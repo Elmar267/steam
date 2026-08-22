@@ -4,6 +4,12 @@ export const WISH = createContext([])
 function WishContext({children}) {
     const [wish, setWish] = useState([])
     function addWish(id, title, oldPrice, newPrice, discount, platform, coverImage){
+        const alreadyExistsWish = wish.some(item => item.id === id);
+
+        if (alreadyExistsWish) {
+            return;
+        }
+
         setWish([...wish, {
             id, title, oldPrice, newPrice, discount, platform, coverImage
         }])

@@ -6,18 +6,18 @@ function MainCard() {
     const { product } = useContext(DATA)
 
   return (
-    <div className='max-w-[1250px] mx-auto px-5 my-15'>
-        <h3 className='text-2xl font-bold text-[#e5e5e5] py-3'>STORY</h3>
+    <div className='max-w-[1250px] mx-auto px-5 mb-15 mt-12'>
+        <h3 className='text-2xl font-bold text-[#e5e5e5] py-3'>Story Games</h3>
         <div className='bg-[#1b3145] p-5'>
             <div className='flex flex-wrap justify-center gap-5'>
                 {product.map((item, i ) => {
                     if(item.category == "story")
-                        return <Link id={item.id} to={`/game/${item.slug}`} key={i} className='w-[100%] sm:w-[250px] md:w-[300px] lg:w-[270px]'>
+                        return <Link id={item.id} to={`/game/${item.slug}`} key={i} className='w-[100%] sm:w-[250px] md:w-[300px] lg:w-[270px] transition-transform duration-200 hover:scale-[1.02]'>
                                     <div className='w-full'>
                                         <img className='w-[100%]' src={item.coverImage} alt={item.title} />
                                     </div>
-                                    <div className='flex justify-between text-white'>
-                                        <p className='text-[14px] text-[#eee]'>{item.title}</p>
+                                    <div className='flex flex-wrap justify-between pl-2 gap-2 text-white'>
+                                        <p className='text-[12px] w-[70%] pt-0.5 text-[#eee]'>{item.title.slice(0, 29)}</p>
                                         {item.discount === '0%' ? 
                                             (<div className="bg-[#00000066] px-2 py-1.5 flex items-center gap-1">
                                                 <p className="text-[#eee] text-[14px] font-semibold">{item.newPrice}</p>

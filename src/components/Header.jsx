@@ -9,7 +9,7 @@ function Header() {
 
   return (
     <header className='bg-[#171d25] fixed top-0 left-0 right-0 z-99'>
-        <div className='max-w-[1250px] mx-auto px-5 py-8'>
+        <div className='max-w-[1250px] mx-auto px-5 py-6'>
             <div className='flex justify-between items-center'>
                 <div className='flex gap-20 justify-between items-center'>
                     <div className='w-[120px] md:w-[165px]'>
@@ -33,7 +33,7 @@ function Header() {
                     <p className=' cursor-pointer'>Sign in</p>
                 </div>
                 <div className='flex md:hidden lg:hidden'>
-                    <HiMenu onClick={() => setMenuOpen(!menuOpen)} className='text-[30px] text-[#f4f5f9]' />
+                    <HiMenu onClick={() => setMenuOpen(!menuOpen)} className='text-[30px] cursor-pointer text-[#f4f5f9]' />
                 </div>
             </div>
             

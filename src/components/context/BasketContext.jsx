@@ -3,9 +3,15 @@ export const BASKET = createContext([])
 
 function BasketContext({children}) {
     const [basket, setBasket] = useState([])
-    function addBasket(id, title, oldPrice, newPrice, discount, platform, coverImage){
+    function addBasket(id, title, oldPrice, newPrice, discount, platform, coverImage, slug){
+        const alreadyExistsBasket = basket.some(item => item.id === id);
+
+        if (alreadyExistsBasket) {
+            return;
+        }
+
         setBasket([...basket, {
-            id, title, oldPrice, newPrice, discount, platform, coverImage
+            id, title, oldPrice, newPrice, discount, platform, coverImage, slug
         }])
     }
 

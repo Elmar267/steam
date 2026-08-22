@@ -4,7 +4,7 @@ import { DATA } from "../context/DataContext";
 import { Link } from "react-router";
 
 const PEEK_PCT = 8;
-const AUTOPLAY_TIME = 5000;
+const AUTOPLAY_TIME = 3000;
 
 function RatingLabel({ rating }) {
     const color = rating === "Mixed" ? "text-[#a3a3a3]" : "text-[#67c1f1]";

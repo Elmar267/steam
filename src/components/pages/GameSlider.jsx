@@ -38,7 +38,7 @@ function GameSlider() {
     const games = product || [];
 
     const filteredGames = games.filter(
-        (game) => game.category === "action")
+        (game) => game.category === "rpg")
 
     const maxIndex = Math.max(
         0,
@@ -76,12 +76,12 @@ function GameSlider() {
     }
 
     return (
-        <div className="text-white p-4 sm:p-6 max-w-[1250px] mx-auto">
+        <div className="text-white mt-10 p-4 sm:p-6 max-w-[1250px] mx-auto">
 
             <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-3 mb-4">
 
                 <h2 className="text-2xl font-bold text-[#e5e5e5]">
-                    Action
+                    RPG Games
                 </h2>
 
             </div>
@@ -104,32 +104,34 @@ function GameSlider() {
                             (
                             (100% - ${(itemsPerPage - 1) * 8}px)
                             / ${itemsPerPage}
-                            + 8px))`,}} >
+                            + 8px))`,
+                        }} >
 
                         {filteredGames.map((game) => (
 
-                            <Link  id={game.id} to={`/game/${game.slug}`} key={game.id} className="flex-none cursor-pointer group/card"
+                            <Link id={game.id} to={`/game/${game.slug}`} key={game.id} className="flex-none cursor-pointer group/card"
                                 style={{
                                     width: `calc(
                                 (100% - ${(itemsPerPage - 1) * 8}px)
-                                / ${itemsPerPage})`,}}>
+                                / ${itemsPerPage})`,
+                                }}>
 
                                 <div className="relative aspect-[16/9] overflow-hidden">
                                     <img src={game.coverImage} alt={game.title}
                                         className="w-full h-full object-cover group-hover/card:scale-105 transition-transform duration-200" />
                                 </div>
 
-                                {game.discount === '0%' ? 
+                                {game.discount === '0%' ?
                                     (<div className="bg-[#00000066] px-2 py-1.5 flex justify-end items-center gap-1">
                                         <p className="text-[#eee] text-[14px] font-semibold">{game.newPrice}</p>
                                     </div>) :
-                                    (<div className="bg-[#00000033] p-1 flex items-center justify-end gap-1 mt-1">
-                                        <div className="bg-[#8bc53f] text-black font-bold text-[13px] px-2 py-0.5 rounded-sm">
+                                    (<div className="bg-[#00000033] p-0.5 flex items-center justify-end gap-1 mt-1">
+                                        <div className="bg-[#8bc53f] text-black font-bold text-[12px] px-2 py-0.5 rounded-sm">
                                             {game.discount}
                                         </div>
-                                        <div className="bg-[#00000066] px-2 py-1.5 flex items-center gap-1">
-                                            <p className="text-[#626366] line-through text-[13x]">{game.oldPrice}</p>
-                                            <p className="text-[#eee] text-[14px] font-semibold">{game.newPrice}</p>
+                                        <div className="bg-[#00000066] px-2 py-0.5 flex items-center gap-1">
+                                            <p className="text-[#626366] line-through text-[12x]">{game.oldPrice}</p>
+                                            <p className="text-[#eee] text-[13px] font-semibold">{game.newPrice}</p>
                                         </div>
                                     </div>
                                     )}
@@ -156,8 +158,8 @@ function GameSlider() {
                         key={index}
                         onClick={() => setCurrentIndex(index)}
                         className={`h-2 rounded-full transition-all ${currentIndex === index
-                                ? 'w-6 bg-white'
-                                : 'w-2 bg-[#ffffff33]'
+                            ? 'w-6 bg-white'
+                            : 'w-2 bg-[#ffffff33]'
                             }`}
                     />
                 ))}

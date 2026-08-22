@@ -89,8 +89,8 @@ function DetailGames() {
                 </div>
             </div>
             <div className="bg-[#111d28] p-2 flex flex-wrap justify-center sm:justify-between gap-1 mt-1">
-                <button  onClick={() => addWish(game.id, game.title, game.oldPrice, game.newPrice, game.discount, game.platform, game.coverImage)} className="bg-[#315a75] cursor-pointer px-3 py-1.5 text-sm">Add to Wishlist</button>
-                <button className="bg-[#315a75] px-3 py-1.5 text-sm">View Your Queue →</button>
+                <button  onClick={() => addWish(game.id, game.title, game.oldPrice, game.newPrice, game.discount, game.platform, game.coverImage)} className="bg-[#315a75] hover:bg-[#4f95bd] cursor-pointer px-3 py-1.5 text-sm">Add to Wishlist</button>
+                <button className="bg-[#315a75] hover:bg-[#4f95bd] px-3 py-1.5 text-sm">View Your Queue →</button>
             </div>
             <div className="grid grid-cols-1 lg:grid-cols-[1fr_280px] gap-3 mt-10">
                 <div>
@@ -105,20 +105,20 @@ function DetailGames() {
                             </div>
                             <div className="flex flex-wrap items-center gap-2">
                                 {game.discount === '0%' ? 
-                                (<div className="bg-[#00000066] px-2 py-1.5 flex justify-end items-center gap-1">
+                                (<div className="bg-[#00000066] px-2 py-1.5 rounded-xs flex justify-end items-center gap-1">
                                     <p className="text-[#eee] text-[16px] font-semibold">{game.newPrice}</p>
                                 </div>) :
                                 (<div className="p-1 flex items-center justify-end gap-1 mt-1">
                                     <div className="bg-[#8bc53f] text-black font-bold text-[15px] px-2 py-0.5 rounded-sm">
                                         {game.discount}
                                     </div>
-                                    <div className="bg-[#00000066] px-2 py-1.5 flex items-center gap-1">
+                                    <div className="bg-[#00000066]  rounded-xs px-2 py-1.5 flex items-center gap-1">
                                         <p className="text-[#626366] line-through text-[15px]">{game.oldPrice}</p>
                                         <p className="text-[#eee] text-[16px] font-semibold">{game.newPrice}</p>
                                     </div>
                                 </div>
                                 )}
-                                <button onClick={() => addBasket(game.id, game.title, game.oldPrice, game.newPrice, game.discount, game.platform, game.coverImage)} className="bg-[#75a916] cursor-pointer px-2 py-1.5 text-[14px] text-white font-medium">Add to Basket</button>
+                                <button onClick={() => addBasket(game.id, game.title, game.oldPrice, game.newPrice, game.discount, game.platform, game.coverImage, game.slug)} className="bg-[#75a916] hover:bg-[#8ed629] rounded-xs cursor-pointer px-2 py-1.5 text-[14px] text-white font-medium">Add to Basket</button>
                             </div>
                         </div>
                     </div>

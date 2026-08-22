@@ -1,8 +1,10 @@
 import React, { useContext } from 'react'
 import { WISH } from '../context/WishContext';
+import { BASKET } from '../context/BasketContext';
 
 function WishList() {
     const { wish, removeFromWishlist, clearWishlist } = useContext(WISH)
+    const { addBasket } = useContext(BASKET)
 
     const CountOldPrice = wish.reduce((price, item) => {
         return price + Number(item.oldPrice.replace('$', ''));
@@ -54,6 +56,7 @@ function WishList() {
                                                     </div>
                                                 </div>
                                                 )}
+                                                <button onClick={() => addBasket(item.id, item.title, item.oldPrice, item.newPrice, item.discount, item.platform, item.coverImage)} className="bg-[#75a916] hover:bg-[#8ed629] rounded-xs cursor-pointer px-2 py-1.5 text-[14px] text-white font-medium">Add to Basket</button>
                                             </div>
                                         </div>
                                     </div>

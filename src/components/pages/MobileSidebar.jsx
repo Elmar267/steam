@@ -1,14 +1,27 @@
-import { Link, useParams } from "react-router";
+import { useEffect } from "react";
+import { Link } from "react-router";
 import { IoClose } from "react-icons/io5";
 
 function MobileSidebar({ isOpen, onClose }) {
-    const {menuOpen} = useParams()
+
+  useEffect(() => {
+    function handleResize() {
+      if (window.innerWidth >= 768) {
+        onClose();
+      }
+    }
+
+    window.addEventListener("resize", handleResize);
+
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  }, [onClose]);
 
   return (
-    <div className={`fixed top-0 right-0 h-full w-[250px] bg-[#171a22] z-50 transform transition-transform duration-300 ease-in-out ${
+    <div className={`fixed top-0 right-0 h-full w-[240px] sm:w-[350px] bg-[#171a22] z-50 transform transition-transform duration-300 ease-in-out ${
         isOpen ? "translate-x-0" : "translate-x-full"
-      }`}
-    >
+      }`}>
       <nav className="flex flex-col h-full py-4 overflow-y-auto">
         <div className="flex justify-between gap-3">
             <div className='max-w-[120px] mx-4 mb-4'>
