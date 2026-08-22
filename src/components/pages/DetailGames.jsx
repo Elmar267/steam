@@ -1,0 +1,165 @@
+import React, { useContext, useState } from 'react'
+import { useParams } from 'react-router'
+import { DATA } from '../context/DataContext'
+import { BASKET } from '../context/BasketContext';
+import { FaShoppingCart, FaStar } from "react-icons/fa";
+import { WISH } from '../context/WishContext';
+
+function DetailGames() {
+    const { slug } = useParams()
+    const { product } = useContext(DATA)
+    const { addBasket } = useContext(BASKET)
+    const { addWish } = useContext(WISH)
+    const [selectedImage, setSelectedImage] = useState(null)
+
+    if(product.length === 0){
+        return <div><p>Loading...</p></div>
+    }
+
+    const game = product.find(item => item.slug === slug)
+
+    if(!game){
+        return <section className="flex items-center h-full p-16 dark:bg-gray-50 dark:text-gray-800">
+                    <div className="container flex flex-col items-center justify-center px-5 mx-auto my-8">
+                        <div className="max-w-md text-center">
+                            <h2 className="mb-8 font-extrabold text-9xl dark:text-gray-400">
+                                <span className="sr-only">Not Founded</span>
+                            </h2>
+                            <p className="text-2xl font-semibold md:text-3xl">Sorry, we couldn't find this page.</p>
+                            <p className="mt-4 mb-8 dark:text-gray-600">But dont worry, you can find plenty of other things on our homepage.</p>
+                            <a rel="noopener noreferrer" href="#" className="px-8 py-3 font-semibold rounded dark:bg-violet-600 dark:text-gray-50">Back to homepage</a>
+                        </div>
+                    </div>
+                </section>
+    }
+
+    const galleryImages = game.images?.length ? game.images : Array(6).fill(game.coverImage)
+    const mainImage = selectedImage || game.coverImage
+
+    return (
+    <div className="min-h-screen bg2 text-white mt-10 pt-28 pb-20">
+        <div className="max-w-[1250px] mx-auto px-3">
+            <div className="text-[13px] text-[#67a5d8] mb-1">
+                All Games › Games › {game.genres?.[0] || "Adventure Games"} › {game.title}
+            </div>
+            <div className="flex justify-between items-center mb-2">
+                <h1 className="text-[26px] text-[#e5e5e5]">{game.title}</h1>
+                <button className="bg-[#315b78] px-3 py-1.5 text-sm">Community Hub</button>
+            </div>
+            <div className="grid grid-cols-1 lg:grid-cols-[1fr_320px] bg-[#101820]">
+                <div>
+                    <div className="relative bg-black aspect-video">
+                        <img src={mainImage} alt={game.title} className="w-full h-full object-cover" />
+                    </div>
+                    <div className="flex gap-1 p-1 bg-[#111a22] overflow-x-auto">
+                        {galleryImages.map((coverImage, index) => (
+                            <div key={index} onClick={() => setSelectedImage(coverImage)} className={`shrink-0 w-[90px] h-[50px] cursor-pointer ${selectedImage === coverImage ? "ring-2 ring-white" : ""}`}>
+                                <img src={coverImage} alt="" className={`w-full h-full object-cover ${selectedImage === coverImage ? "opacity-100" : "opacity-70 hover:opacity-100"}`} />
+                            </div>
+                        ))}
+                    </div>
+                </div>
+                <div className="bg-[#171e25] p-4">
+                    <img src={game.coverImage} alt={game.title} className="w-full h-[150px] object-cover mb-4" />
+                    <p className="text-[#ccc] text-sm leading-5 mb-5">{game.aboutGame}</p>
+                    <div className="space-y-2 text-sm">
+                        <div className="flex justify-between gap-3">
+                            <span className="text-[#7d8992]">PLAYER RATING:</span>
+                            <span className="text-[#67a9d8]">{game.playerRating}</span>
+                        </div>
+                        <div className="flex justify-between gap-3">
+                            <span className="text-[#7d8992]">RELEASE DATE:</span>
+                            <span className="text-[#67a9d8]">{game.releaseDate}</span>
+                        </div>
+                        <div className="flex justify-between gap-3">
+                            <span className="text-[#7d8992]">DEVELOPER:</span>
+                            <span className="text-[#67a9d8]">{game.developer}</span>
+                        </div>
+                        <div className="flex justify-between gap-3">
+                            <span className="text-[#7d8992]">PUBLISHER:</span>
+                            <span className="text-[#67a9d8]">{game.publisher}</span>
+                        </div>
+                    </div>
+                    <p className="text-xs text-[#6d7982] mt-5 mb-2">Popular user-defined tags:</p>
+                    <div className="flex flex-wrap gap-1">
+                        {game.genres?.map((item,index) => (
+                            <span key={index} className="text-xs text-[#67a9d8] bg-[#294b61] px-2 py-1">{item}</span>
+                        ))}
+                    </div>
+                </div>
+            </div>
+            <div className="bg-[#111d28] p-2 flex flex-wrap justify-center sm:justify-between gap-1 mt-1">
+                <button  onClick={() => addWish(game.id, game.title, game.oldPrice, game.newPrice, game.discount, game.platform, game.coverImage)} className="bg-[#315a75] cursor-pointer px-3 py-1.5 text-sm">Add to Wishlist</button>
+                <button className="bg-[#315a75] px-3 py-1.5 text-sm">View Your Queue →</button>
+            </div>
+            <div className="grid grid-cols-1 lg:grid-cols-[1fr_280px] gap-3 mt-10">
+                <div>
+                    <div className="bg-[#263746] h-[55px] flex items-center px-4 mb-4">
+                        <p className="text-base text-[#ddd]">Check out the entire game collection</p>
+                    </div>
+                    <div className="bg-[#2b3b49] p-4 mb-4">
+                        <div className="flex flex-wrap justify-between items-center gap-3">
+                            <div>
+                                <p className="text-base text-[#e6e6e6]">{game.title}</p>
+                                <p className="text-xs text-[#75a7c9]">Digital Edition</p>
+                            </div>
+                            <div className="flex flex-wrap items-center gap-2">
+                                {game.discount === '0%' ? 
+                                (<div className="bg-[#00000066] px-2 py-1.5 flex justify-end items-center gap-1">
+                                    <p className="text-[#eee] text-[16px] font-semibold">{game.newPrice}</p>
+                                </div>) :
+                                (<div className="p-1 flex items-center justify-end gap-1 mt-1">
+                                    <div className="bg-[#8bc53f] text-black font-bold text-[15px] px-2 py-0.5 rounded-sm">
+                                        {game.discount}
+                                    </div>
+                                    <div className="bg-[#00000066] px-2 py-1.5 flex items-center gap-1">
+                                        <p className="text-[#626366] line-through text-[15px]">{game.oldPrice}</p>
+                                        <p className="text-[#eee] text-[16px] font-semibold">{game.newPrice}</p>
+                                    </div>
+                                </div>
+                                )}
+                                <button onClick={() => addBasket(game.id, game.title, game.oldPrice, game.newPrice, game.discount, game.platform, game.coverImage)} className="bg-[#75a916] cursor-pointer px-2 py-1.5 text-[14px] text-white font-medium">Add to Basket</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div className="bg-[#1d2d3a] p-5">
+                        <h2 className="text-[20px] text-[#e5e5e5] mb-3">About This Game</h2>
+                        <hr className="border-[#354957] mb-4" />
+                        <p className="text-base leading-6 text-[#aaa]">{game.description}</p>
+                    </div>
+                </div>
+                <div className="bg-[#16232d] p-4 h-fit">
+                    <div className="pb-4">
+                        <p className="text-sm text-[#7d8992] mb-3">Genres:</p>
+                        <div className="flex flex-wrap gap-1.5">
+                            {game.genres?.map((item,index) => (
+                                <span key={index} className="text-[13px] text-[#67a9d8] bg-[#294b61] px-2 py-1">{item}</span>
+                            ))}
+                        </div>
+                    </div>
+                    <hr className="border-[#35424c]" />
+                    <div className="py-4">
+                        <p className="text-sm text-[#7d8992] mb-3">Features:</p>
+                        <div className="flex flex-wrap gap-1.5">
+                            {game.features?.map((item,index) => (
+                                <span key={index} className="text-[13px] text-[#67a9d8] bg-[#294b61] px-2 py-1">{item}</span>
+                            ))}
+                        </div>
+                    </div>
+                    <hr className="border-[#35424c]" />
+                    <div className="pt-4">
+                        <p className="text-sm text-[#7d8992] mb-3">Languages:</p>
+                        <div className="flex flex-wrap gap-1.5">
+                            {game.languages?.map((item,index) => (
+                                <span key={index} className="text-[13px] text-[#67a9d8] bg-[#294b61] px-2 py-1">{item}</span>
+                            ))}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+)
+}
+
+export default DetailGames
