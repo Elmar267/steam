@@ -13,7 +13,7 @@ function GameBasket() {
     }, 0);
 
   return (
-    <div className='bg2 mt-10 pt-30 pb-30'>
+    <div className='bg2 mt-8 pt-30 pb-30'>
         <div className='max-w-[1250px] mx-auto px-5 py-8'>
             <div className="flex flex-wrap justify-between items-center gap-3 mb-4 px-0 sm:px-4">
                 <h3 className="text-[24px] font-medium text-[#e5e5e5]">Your Shopping Cart</h3>

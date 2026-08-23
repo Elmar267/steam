@@ -6,7 +6,7 @@ function MainCard() {
     const { product } = useContext(DATA)
 
   return (
-    <div className='max-w-[1250px] mx-auto px-5 mb-15 mt-12'>
+    <div className='max-w-[1250px] mx-auto px-5 mb-10 mt-5'>
         <h3 className='text-2xl font-bold text-[#e5e5e5] py-3'>Story Games</h3>
         <div className='bg-[#1b3145] p-5'>
             <div className='flex flex-wrap justify-center gap-5'>
@@ -27,7 +27,7 @@ function MainCard() {
                                                     {item.discount}
                                                 </div>
                                                 <div className="bg-[#00000066] px-2 py-1.5 flex items-center gap-1">
-                                                    <p className="text-[#626366] line-through text-[13x]">{item.oldPrice}</p>
+                                                    <p className="text-[#626366] line-through text-[13px]">{item.oldPrice}</p>
                                                     <p className="text-[#eee] text-[14px] font-semibold">{item.newPrice}</p>
                                                 </div>
                                             </div>

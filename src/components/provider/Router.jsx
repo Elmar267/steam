@@ -7,10 +7,13 @@ import Support from '../pages/Support'
 import DetailGames from '../pages/DetailGames'
 import GameBasket from '../pages/GameBasket'
 import WishList from '../pages/WishList'
+import ScrollToTop from '../pages/ScrollToTop'
 
 function Router() {
   return (
     <>
+        <ScrollToTop />
+
         <Routes>
             <Route path='/' element={<Layout/>}>
                 <Route index element={<Store/>} />

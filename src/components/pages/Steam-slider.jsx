@@ -28,32 +28,32 @@ function SteamSlider() {
         setIndex((newIndex + count) % count);
     };
 
-    const next = () => goTo(index + 1);
-    const prev = () => goTo(index - 1);
+    const next = () => goTo(index + 1)
+    const prev = () => goTo(index - 1)
 
     useEffect(() => {
         if (!count) return;
-        if (index >= count) setIndex(0);
+        if (index >= count) setIndex(0)
     }, [count, index]);
 
     useEffect(() => {
-        if (paused || count <= 1) return;
+        if (paused || count <= 1) return
         timerRef.current = setInterval(() => {
-            setIndex((currentIndex) => (currentIndex + 1) % count);
+            setIndex((currentIndex) => (currentIndex + 1) % count)
         }, AUTOPLAY_TIME);
         return () => clearInterval(timerRef.current);
     }, [paused, count]);
 
-    const insetStyle = { paddingLeft: `${PEEK_PCT}%`, paddingRight: `${PEEK_PCT}%` };
+    const insetStyle = { paddingLeft: `${PEEK_PCT}%`, paddingRight: `${PEEK_PCT}%` }
 
-    if (!product || product.length === 0) return null;
+    if (!product || product.length === 0) return null
 
     return (
         <div className="w-full py-4 font-sans select-none" style={{ fontFamily: "'Motiva Sans', Arial, Helvetica, sans-serif" }} onMouseEnter={() => setPaused(true)} onMouseLeave={() => setPaused(false)}>
             <div className="max-w-[1920px] mx-auto">
 
                 <div className="hidden md:flex items-center justify-between mb-3" style={insetStyle}>
-                    <h2 className="text-white text-[20px] font-bold tracking-tight">Featured &amp; Recommended</h2>
+                    <h2 className="text-white text-[20px] font-bold tracking-tight">Featured & Recommended</h2>
                     <div className="flex items-center gap-2 bg-gradient-to-b from-[#3699d4] to-[#1b6ea8] rounded-[3px] pl-2 pr-3 py-[6px] cursor-pointer hover:brightness-110 transition">
                         <div className="flex -space-x-2">
                             <span className="w-[22px] h-[22px] rounded-full bg-[#0e1c26] border-2 border-[#8fd0f0] text-[8px] text-[#8fd0f0] flex items-center justify-center font-bold">20</span>
@@ -63,7 +63,7 @@ function SteamSlider() {
                     </div>
                 </div>
 
-                <div className="md:hidden px-3 mb-2"><h2 className="text-white text-[17px] font-bold">Featured &amp; Recommended</h2></div>
+                <div className="md:hidden px-3 mb-2"><h2 className="text-white text-[17px] font-bold">Featured & Recommended</h2></div>
 
                 <div className="flex items-stretch">
 
@@ -127,9 +127,25 @@ function SteamSlider() {
 
                 <div className="md:hidden flex items-center justify-between bg-[#1c2d3d] px-4 py-3">
                     <button aria-label="Previous slide" onClick={prev} className="text-white/70"><ChevronLeft size={20} /></button>
-                    <div className="text-center">
-                        <h3 className="text-white text-sm font-semibold">{slide.title}</h3>
-                        <div className="text-xs"><RatingLabel rating={slide.rating} /></div>
+                    <div className="flex gap-3">
+                        <div>
+                            <h3 className="text-white text-sm font-semibold">{slide.title}</h3>
+                            <div className="text-xs"><RatingLabel rating={slide.playerRating} /></div>
+                        </div>
+                        {slide.discount === '0%' ? 
+                            (<div className="bg-[#00000066] px-1ş5 py-0.5 flex justify-end items-center gap-1">
+                                <p className="text-[#eee] text-[12px] font-semibold">{slide.newPrice}</p>
+                            </div>) :
+                            (<div className="p-1 flex flex-wrap items-center justify-end gap-1 mt-1">
+                                <div className="bg-[#8bc53f] text-black font-bold text-[10px] px-2 py-0.5 rounded-sm">
+                                    {slide.discount}
+                                </div>
+                                <div className="bg-[#00000066] px-1.5 py-0.5 flex flex-wrap items-center gap-1">
+                                    <p className="text-[#626366] line-through text-[11px]">{slide.oldPrice}</p>
+                                    <p className="text-[#eee] text-[12px] font-semibold">{slide.newPrice}</p>
+                                </div>
+                            </div>
+                            )}
                     </div>
                     <button aria-label="Next slide" onClick={next} className="text-white/70"><ChevronRight size={20} /></button>
                 </div>

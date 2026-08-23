@@ -37,7 +37,7 @@ function DetailGames() {
     const mainImage = selectedImage || game.coverImage
 
     return (
-    <div className="min-h-screen bg2 text-white mt-10 pt-28 pb-20">
+    <div className="min-h-screen bg2 text-white mt-8 pt-20 pb-20">
         <div className="max-w-[1250px] mx-auto px-3">
             <div className="text-[13px] text-[#67a5d8] mb-1">
                 All Games › Games › {game.genres?.[0] || "Adventure Games"} › {game.title}
@@ -64,19 +64,19 @@ function DetailGames() {
                     <p className="text-[#ccc] text-sm leading-5 mb-5">{game.aboutGame}</p>
                     <div className="space-y-2 text-sm">
                         <div className="flex justify-between gap-3">
-                            <span className="text-[#7d8992]">PLAYER RATING:</span>
+                            <span className="text-[#7d8992] text-[13px]">PLAYER RATING:</span>
                             <span className="text-[#67a9d8]">{game.playerRating}</span>
                         </div>
                         <div className="flex justify-between gap-3">
-                            <span className="text-[#7d8992]">RELEASE DATE:</span>
+                            <span className="text-[#7d8992] text-[13px]">RELEASE DATE:</span>
                             <span className="text-[#67a9d8]">{game.releaseDate}</span>
                         </div>
                         <div className="flex justify-between gap-3">
-                            <span className="text-[#7d8992]">DEVELOPER:</span>
+                            <span className="text-[#7d8992] text-[13px]">DEVELOPER:</span>
                             <span className="text-[#67a9d8]">{game.developer}</span>
                         </div>
                         <div className="flex justify-between gap-3">
-                            <span className="text-[#7d8992]">PUBLISHER:</span>
+                            <span className="text-[#7d8992] text-[13px]">PUBLISHER:</span>
                             <span className="text-[#67a9d8]">{game.publisher}</span>
                         </div>
                     </div>
@@ -106,15 +106,15 @@ function DetailGames() {
                             <div className="flex flex-wrap items-center gap-2">
                                 {game.discount === '0%' ? 
                                 (<div className="bg-[#00000066] px-2 py-1.5 rounded-xs flex justify-end items-center gap-1">
-                                    <p className="text-[#eee] text-[16px] font-semibold">{game.newPrice}</p>
+                                    <p className="text-[#eee] text-[15px] font-semibold">{game.newPrice}</p>
                                 </div>) :
                                 (<div className="p-1 flex items-center justify-end gap-1 mt-1">
-                                    <div className="bg-[#8bc53f] text-black font-bold text-[15px] px-2 py-0.5 rounded-sm">
+                                    <div className="bg-[#8bc53f] text-black font-bold text-[14px] px-2 py-0.5 rounded-sm">
                                         {game.discount}
                                     </div>
                                     <div className="bg-[#00000066]  rounded-xs px-2 py-1.5 flex items-center gap-1">
                                         <p className="text-[#626366] line-through text-[15px]">{game.oldPrice}</p>
-                                        <p className="text-[#eee] text-[16px] font-semibold">{game.newPrice}</p>
+                                        <p className="text-[#eee] text-[15px] font-semibold">{game.newPrice}</p>
                                     </div>
                                 </div>
                                 )}
@@ -130,7 +130,7 @@ function DetailGames() {
                 </div>
                 <div className="bg-[#16232d] p-4 h-fit">
                     <div className="pb-4">
-                        <p className="text-sm text-[#7d8992] mb-3">Genres:</p>
+                        <p className="text-[14px] text-[#7d8992] mb-3">Genres:</p>
                         <div className="flex flex-wrap gap-1.5">
                             {game.genres?.map((item,index) => (
                                 <span key={index} className="text-[13px] text-[#67a9d8] bg-[#294b61] px-2 py-1">{item}</span>
@@ -139,7 +139,7 @@ function DetailGames() {
                     </div>
                     <hr className="border-[#35424c]" />
                     <div className="py-4">
-                        <p className="text-sm text-[#7d8992] mb-3">Features:</p>
+                        <p className="text-[14px] text-[#7d8992] mb-3">Features:</p>
                         <div className="flex flex-wrap gap-1.5">
                             {game.features?.map((item,index) => (
                                 <span key={index} className="text-[13px] text-[#67a9d8] bg-[#294b61] px-2 py-1">{item}</span>
@@ -148,7 +148,7 @@ function DetailGames() {
                     </div>
                     <hr className="border-[#35424c]" />
                     <div className="pt-4">
-                        <p className="text-sm text-[#7d8992] mb-3">Languages:</p>
+                        <p className="text-[14px] text-[#7d8992] mb-3">Languages:</p>
                         <div className="flex flex-wrap gap-1.5">
                             {game.languages?.map((item,index) => (
                                 <span key={index} className="text-[13px] text-[#67a9d8] bg-[#294b61] px-2 py-1">{item}</span>

@@ -76,7 +76,7 @@ function ActionGames() {
     }
 
   return (
-    <div className="text-white mt-10 p-4 sm:p-6 max-w-[1250px] mx-auto">
+    <div className="text-white mt-8 p-4 sm:p-6 max-w-[1250px] mx-auto">
     
         <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-3 mb-4">
 
@@ -125,13 +125,13 @@ function ActionGames() {
                                 (<div className="bg-[#00000066] px-2 py-1.5 flex justify-end items-center gap-1">
                                     <p className="text-[#eee] text-[14px] font-semibold">{game.newPrice}</p>
                                 </div>) :
-                                (<div className="bg-[#00000033] p-0.5 flex items-center justify-end gap-1 mt-1">
+                                (<div className="bg-[#00000066] p-0.5 flex items-center justify-end gap-1 mt-1">
                                     <div className="bg-[#8bc53f] text-black font-bold text-[12px] px-2 py-0.5 rounded-sm">
                                         {game.discount}
                                     </div>
                                     <div className="bg-[#00000066] px-2 py-0.5 flex items-center gap-1">
-                                        <p className="text-[#626366] line-through text-[12x]">{game.oldPrice}</p>
-                                        <p className="text-[#eee] text-[13px] font-semibold">{game.newPrice}</p>
+                                        <p className="text-[#626366] line-through text-[14px]">{game.oldPrice}</p>
+                                        <p className="text-[#eee] text-[14px] font-semibold">{game.newPrice}</p>
                                     </div>
                                 </div>
                                 )}
