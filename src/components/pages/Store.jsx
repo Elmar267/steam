@@ -9,6 +9,8 @@ import ActionGames from './ActionGames';
 import HorrorGames from './HorrorGames';
 import { BASKET } from '../context/BasketContext';
 import { WISH } from '../context/WishContext';
+import GameCard from './GameCard';
+import GameCard2 from './GameCard2';
 
 function Store() {
   const { basket } = useContext(BASKET)
@@ -39,6 +41,11 @@ function Store() {
         <MainCard />
 
         <ActionGames/>
+
+        <div className='max-w-[1250px] mx-auto flex flex-wrap justify-center'>
+          <GameCard />
+          <GameCard2 />
+        </div>
 
         <HorrorGames/>
 

@@ -25,42 +25,40 @@ function GameBasket() {
                         <p className="text-base text-[#ddd]">Check out the entire game collection</p>
                     </div>
                     {basket.map((item, i) => {
-                        return <Link to={`/game/${item.slug}`}>
-                                    <div className="bg-[#2b3b49] p-3 mb-4 cursor-pointer">
-                                            <div className='flex justify-end mb-1'>
-                                                <div onClick={() => removeFromBasket(item.id)} className='px-1 flex items-center justify-center rounded-xs text-[#aaa] bg-[#16232d] hover:text-white hover:bg-[#de3618] text-[12px] cursor-pointer'>
-                                                    Remove
-                                                </div>
+                        return <div className="bg-[#2b3b49] p-3 mb-4 cursor-pointer">
+                                        <div className='flex justify-end mb-1'>
+                                            <div onClick={() => removeFromBasket(item.id)} className='px-1 flex items-center justify-center rounded-xs text-[#aaa] bg-[#16232d] hover:text-white hover:bg-[#de3618] text-[12px] cursor-pointer'>
+                                                Remove
                                             </div>
-                                            <div className="flex flex-wrap justify-between items-center gap-3">
-                                                <div className='w-[100%] sm:w-[20%]'>
-                                                    <img className='w-full h-full object-cover' src={item.coverImage} alt={item.title} />
+                                        </div>
+                                        <div className="flex flex-wrap justify-between items-center gap-3">
+                                            <div className='w-[100%] sm:w-[20%]'>
+                                                <img className='w-full h-full object-cover' src={item.coverImage} alt={item.title} />
+                                            </div>
+                                            <div className='w-[100%] sm:w-[76%] flex flex-wrap justify-between gap-3'>
+                                                <div>
+                                                    <p className="text-[16px] text-[#e6e6e6]">{item.title}</p>
+                                                    <p className="text-xs text-[#75a7c9]">Digital Edition</p>
                                                 </div>
-                                                <div className='w-[100%] sm:w-[76%] flex flex-wrap justify-between gap-3'>
-                                                    <div>
-                                                        <p className="text-[16px] text-[#e6e6e6]">{item.title}</p>
-                                                        <p className="text-xs text-[#75a7c9]">Digital Edition</p>
-                                                    </div>
-                                                    <div className="flex flex-wrap items-center gap-2">
-                                                        {item.discount === '0%' ? 
-                                                        (<div className="bg-[#00000066] px-2 py-1.5 flex justify-end items-center gap-1">
-                                                            <p className="text-[#eee] text-[16px] font-semibold">{item.newPrice}</p>
-                                                        </div>) :
-                                                        (<div className="p-1 flex flex-wrap items-center justify-end gap-1 mt-1">
-                                                            <div className="bg-[#8bc53f] text-black font-bold text-[15px] px-2 py-0.5 rounded-sm">
-                                                                {item.discount}
-                                                            </div>
-                                                            <div className="bg-[#00000066] px-2 py-1.5 flex flex-wrap items-center gap-1">
-                                                                <p className="text-[#626366] line-through text-[15px]">{item.oldPrice}</p>
-                                                                <p className="text-[#eee] text-[16px] font-semibold">{item.newPrice}</p>
-                                                            </div>
+                                                <div className="flex flex-wrap items-center gap-2">
+                                                    {item.discount === '0%' ? 
+                                                    (<div className="bg-[#00000066] px-2 py-1.5 flex justify-end items-center gap-1">
+                                                        <p className="text-[#eee] text-[16px] font-semibold">{item.newPrice}</p>
+                                                    </div>) :
+                                                    (<div className="p-1 flex flex-wrap items-center justify-end gap-1 mt-1">
+                                                        <div className="bg-[#8bc53f] text-black font-bold text-[15px] px-2 py-0.5 rounded-sm">
+                                                            {item.discount}
                                                         </div>
-                                                        )}
+                                                        <div className="bg-[#00000066] px-2 py-1.5 flex flex-wrap items-center gap-1">
+                                                            <p className="text-[#626366] line-through text-[15px]">{item.oldPrice}</p>
+                                                            <p className="text-[#eee] text-[16px] font-semibold">{item.newPrice}</p>
+                                                        </div>
                                                     </div>
+                                                    )}
                                                 </div>
                                             </div>
                                         </div>
-                                </Link>
+                                    </div>
                     })}
                 </div>
                 <div className="bg-[#16232d] w-[100%] md:w-[35%] p-4">

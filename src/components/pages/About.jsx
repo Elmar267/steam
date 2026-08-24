@@ -4,7 +4,7 @@ import CommunitySection from './CommunitySection';
 
 function About() {
   return (
-    <section className="text-white bg2 mt-12 pt-30 pb-30">
+    <section className="text-white bg1 mt-12 pt-30 pb-30">
       <div className="mx-auto flex max-w-[1200px] items-center px-5">
         <div className="z-10 w-full lg:w-1/2">
           <div className="mb-5 flex items-center gap-4">
