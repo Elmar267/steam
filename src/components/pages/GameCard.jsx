@@ -6,9 +6,9 @@ function GameCard() {
     const { product } = useContext(DATA)
 
   return (
-    <div className='w-[100%] md:w-[49%] mx-auto px-5 mb-10 mt-5'>
+    <div className='w-[100%] md:w-[48%] mx-auto mb-10 mt-5'>
         <h3 className='text-2xl font-bold text-[#e5e5e5] py-3'>Strategy Games</h3>
-        <div className='bg-[#1b3145] p-5'>
+        <div className='bg-[#1b3145] px-5 py-8'>
             <div className='flex flex-wrap justify-center gap-5'>
                 {product.filter((item) => item.category === "strategy").slice(0, 4).map((item, i ) => {
                     return <Link id={item.id} to={`/game/${item.slug}`} key={i} className='w-[100%] md:w-[46%] transition-transform duration-200 hover:scale-[1.02]'>

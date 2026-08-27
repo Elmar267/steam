@@ -48,9 +48,11 @@ function Search() {
                             </Link>
                         )
                     )}
-                    <div className='py-1 text-center bg-[#45505e] hover:bg-[#616e80] cursor-pointer mt-5 rounded-xs'>
-                        <p className='text-[#fff]'>Advanced Search</p>
-                    </div>
+                    <Link to={'/advancedsearch'}>
+                        <div className='py-1 text-center bg-[#45505e] hover:bg-[#616e80] cursor-pointer mt-5 rounded-xs'>
+                            <p className='text-[#fff]'>Advanced Search</p>
+                        </div>
+                    </Link>
                 </div>
                 )}
     </div>

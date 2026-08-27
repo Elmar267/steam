@@ -29,7 +29,7 @@ function Store() {
               </div>
             </div>
             <div className='hidden md:flex lg:flex my-1 sm:order-first md:order-first lg:order-first'>
-              <p className='text-[14px] text-white font-medium cursor-pointer'>Categories</p>
+              <Link to={'/advancedsearch'} className='text-[14px] text-white font-medium cursor-pointer'>Categories</Link>
             </div>
           </div>
         </div>
@@ -42,7 +42,7 @@ function Store() {
 
         <ActionGames/>
 
-        <div className='max-w-[1250px] mx-auto flex flex-wrap justify-center'>
+        <div className='max-w-[1250px] mx-auto px-5 flex flex-wrap gap-5 mt-6 justify-center'>
           <GameCard />
           <GameCard2 />
         </div>

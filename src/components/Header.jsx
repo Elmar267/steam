@@ -12,13 +12,13 @@ function Header() {
         <div className='max-w-[1250px] mx-auto px-5 py-6'>
             <div className='flex justify-between items-center'>
                 <div className='flex gap-20 justify-between items-center'>
-                    <Link to={'/'} className='w-[120px] md:w-[165px]'>
+                    <Link to={'/store'} className='w-[120px] md:w-[165px]'>
                         <img  src="https://store.akamai.steamstatic.com/public/shared/images/header/logo_steam.svg?t=962016" alt="logo" />
                     </Link>
                     <div className='hidden md:flex lg:flex'>
                         <ul className='flex flex-wrap justify-center items-center gap-5'>
                             <li>
-                                <Link to={'/'} className='text-[#dcdedf] font-medium'>STORE</Link>
+                                <Link to={'/store'} className='text-[#dcdedf] font-medium'>STORE</Link>
                             </li>
                             <li>
                                 <Link to={'/about'} className='text-[#dcdedf] font-medium'>ABOUT</Link>

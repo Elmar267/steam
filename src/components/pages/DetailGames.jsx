@@ -1,5 +1,5 @@
 import React, { useContext, useState } from 'react'
-import { useParams } from 'react-router'
+import { Link, useParams } from 'react-router'
 import { DATA } from '../context/DataContext'
 import { BASKET } from '../context/BasketContext';
 import { FaShoppingCart, FaStar } from "react-icons/fa";
@@ -44,7 +44,7 @@ function DetailGames() {
             </div>
             <div className="flex justify-between items-center mb-2">
                 <h1 className="text-[26px] text-[#e5e5e5]">{game.title}</h1>
-                <button className="bg-[#315b78] px-3 py-1.5 text-sm">Community Hub</button>
+                <Link to={'/store'} className="bg-[#315b78] hover:bg-[#4f95bd] px-3 py-1.5 text-sm text-white cursor-pointer">Back to store</Link>
             </div>
             <div className="grid grid-cols-1 lg:grid-cols-[1fr_320px] bg-[#101820]">
                 <div>

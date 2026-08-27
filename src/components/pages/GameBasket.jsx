@@ -17,48 +17,50 @@ function GameBasket() {
         <div className='max-w-[1250px] mx-auto px-5 py-8'>
             <div className="flex flex-wrap justify-between items-center gap-3 mb-4 px-0 sm:px-4">
                 <h3 className="text-[24px] font-medium text-[#e5e5e5]">Your Shopping Cart</h3>
-                <button className="bg-[#315b78] px-3 py-1.5 text-sm text-white">Community Hub</button>
+                <Link to={'/store'} className="bg-[#315b78] hover:bg-[#4f95bd] px-3 py-1.5 text-sm text-white cursor-pointer">Back to store</Link>
             </div>
             <div className="flex flex-wrap gap-3 items-start">
-                <div className='w-[100%] md:w-[63%]'>
+                <div className='w-[100%] md:w-[63%]  order-1 md:order-0'>
                     <div className="bg-[#263746] flex items-center py-4 px-4 mb-4">
                         <p className="text-base text-[#ddd]">Check out the entire game collection</p>
                     </div>
-                    {basket.map((item, i) => {
-                        return <div className="bg-[#2b3b49] p-3 mb-4 cursor-pointer">
-                                        <div className='flex justify-end mb-1'>
-                                            <div onClick={() => removeFromBasket(item.id)} className='px-1 flex items-center justify-center rounded-xs text-[#aaa] bg-[#16232d] hover:text-white hover:bg-[#de3618] text-[12px] cursor-pointer'>
-                                                Remove
-                                            </div>
-                                        </div>
-                                        <div className="flex flex-wrap justify-between items-center gap-3">
-                                            <div className='w-[100%] sm:w-[20%]'>
-                                                <img className='w-full h-full object-cover' src={item.coverImage} alt={item.title} />
-                                            </div>
-                                            <div className='w-[100%] sm:w-[76%] flex flex-wrap justify-between gap-3'>
-                                                <div>
-                                                    <p className="text-[16px] text-[#e6e6e6]">{item.title}</p>
-                                                    <p className="text-xs text-[#75a7c9]">Digital Edition</p>
+                    {basket.length === 0 ? 
+                        <p className='text-[17px] text-[#bbb] font-medium ml-5'>Your Cart is empty</p> : 
+                        basket.map((item, i) => {
+                            return <div key={i} className="bg-[#2b3b49] p-3 mb-4 cursor-pointer">
+                                            <div className='flex justify-end mb-1'>
+                                                <div onClick={() => removeFromBasket(item.id)} className='px-1 flex items-center justify-center rounded-xs text-[#aaa] bg-[#16232d] hover:text-white hover:bg-[#de3618] text-[12px] cursor-pointer'>
+                                                    Remove
                                                 </div>
-                                                <div className="flex flex-wrap items-center gap-2">
-                                                    {item.discount === '0%' ? 
-                                                    (<div className="bg-[#00000066] px-2 py-1.5 flex justify-end items-center gap-1">
-                                                        <p className="text-[#eee] text-[16px] font-semibold">{item.newPrice}</p>
-                                                    </div>) :
-                                                    (<div className="p-1 flex flex-wrap items-center justify-end gap-1 mt-1">
-                                                        <div className="bg-[#8bc53f] text-black font-bold text-[15px] px-2 py-0.5 rounded-sm">
-                                                            {item.discount}
-                                                        </div>
-                                                        <div className="bg-[#00000066] px-2 py-1.5 flex flex-wrap items-center gap-1">
-                                                            <p className="text-[#626366] line-through text-[15px]">{item.oldPrice}</p>
-                                                            <p className="text-[#eee] text-[16px] font-semibold">{item.newPrice}</p>
-                                                        </div>
+                                            </div>
+                                            <div className="flex flex-wrap justify-between items-center gap-3">
+                                                <div className='w-[100%] sm:w-[20%]'>
+                                                    <img className='w-full h-full object-cover' src={item.coverImage} alt={item.title} />
+                                                </div>
+                                                <div className='w-[100%] sm:w-[76%] flex flex-wrap justify-between gap-3'>
+                                                    <div>
+                                                        <p className="text-[16px] text-[#e6e6e6]">{item.title}</p>
+                                                        <p className="text-xs text-[#75a7c9]">Digital Edition</p>
                                                     </div>
-                                                    )}
+                                                    <div className="flex flex-wrap items-center gap-2">
+                                                        {item.discount === '0%' ? 
+                                                        (<div className="bg-[#00000066] px-2 py-1.5 flex justify-end items-center gap-1">
+                                                            <p className="text-[#eee] text-[16px] font-semibold">{item.newPrice}</p>
+                                                        </div>) :
+                                                        (<div className="p-1 flex flex-wrap items-center justify-end gap-1 mt-1">
+                                                            <div className="bg-[#8bc53f] text-black font-bold text-[15px] px-2 py-0.5 rounded-sm">
+                                                                {item.discount}
+                                                            </div>
+                                                            <div className="bg-[#00000066] px-2 py-1.5 flex flex-wrap items-center gap-1">
+                                                                <p className="text-[#626366] line-through text-[15px]">{item.oldPrice}</p>
+                                                                <p className="text-[#eee] text-[16px] font-semibold">{item.newPrice}</p>
+                                                            </div>
+                                                        </div>
+                                                        )}
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
-                                    </div>
                     })}
                 </div>
                 <div className="bg-[#16232d] w-[100%] md:w-[35%] p-4">

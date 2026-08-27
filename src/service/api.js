@@ -15,4 +15,9 @@ async function getFeatures() {
     return res.data
 }
 
-export {getData, getCategory, getFeatures};
+async function getGenres() {
+    const res = await axios.get("https://steam-data-ovx9.vercel.app/api/genres")
+    return res.data
+}
+
+export {getData, getCategory, getFeatures, getGenres};

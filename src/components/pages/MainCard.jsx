@@ -6,7 +6,7 @@ function MainCard() {
     const { product } = useContext(DATA)
 
   return (
-    <div className='max-w-[1250px] mx-auto px-5 mb-10 mt-5'>
+    <div className='max-w-[1250px] mx-auto px-5 mb-8 mt-5'>
         <h3 className='text-2xl font-bold text-[#e5e5e5] py-3'>Story Games</h3>
         <div className='bg-[#1b3145] p-5'>
             <div className='flex flex-wrap justify-center gap-5'>
