@@ -18,7 +18,7 @@ function Search() {
 
   return (
     <div className='absolute right-[41%] sm:right-[48%] md:right-[31%] lg:right-[26%] w-[55%] sm:w-[320px] md:w-[350px] lg:w-[400px]'>
-        <input value={search} onChange={(e) => setSearch(e.target.value)} className='bg-[#354150] min-w-[155px] text-[#eee] rounded-xs w-[100%] px-3 pt-1 pb-0.5 border border-blue-400 border-r focus:border-[#66c0f4] focus:bg-[#242931] focus:outline-none' type="text" placeholder='   search...' />
+        <input value={search} onChange={(e) => setSearch(e.target.value)} className='bg-[#354150] min-w-[155px] text-[#eee] rounded-xs w-[100%] px-3 pt-1 pb-0.5 border border-blue-400 border-r focus:border-[#66c0f4] focus:bg-[#242931] focus:outline-none' type="text" placeholder='search...' />
             {search && (
                 <div className='min-w-[230px] w-[100%] my-2 rounded-xs bg-[#404655] p-3'>
                     <p className='text-[#e5e5e5]'>Search results</p>
