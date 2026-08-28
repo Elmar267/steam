@@ -1,13 +1,21 @@
-import React, { createContext, useState } from 'react'
+import React, { createContext, useEffect, useState } from 'react'
 export const WISH = createContext([])
 
-function WishContext({children}) {
-    const [wish, setWish] = useState([])
-    function addWish(id, title, oldPrice, newPrice, discount, platform, coverImage){
-        const alreadyExistsWish = wish.some(item => item.id === id);
+function WishContext({ children }) {
+    const [wish, setWish] = useState(() => {
+        const savedWish = localStorage.getItem("wishlist")
+        return savedWish ? JSON.parse(savedWish) : []
+    })
+
+    useEffect(() => {
+        localStorage.setItem("wishlist", JSON.stringify(wish))
+    }, [wish])
+
+    function addWish(id, title, oldPrice, newPrice, discount, platform, coverImage) {
+        const alreadyExistsWish = wish.some(item => item.id === id)
 
         if (alreadyExistsWish) {
-            return;
+            return
         }
 
         setWish([...wish, {
@@ -23,11 +31,11 @@ function WishContext({children}) {
         setWish([])
     }
 
-  return (
-    <WISH.Provider value={{addWish, wish, removeFromWishlist, clearWishlist}}>
-        {children}
-    </WISH.Provider>
-  )
+    return (
+        <WISH.Provider value={{ addWish, wish, removeFromWishlist, clearWishlist }}>
+            {children}
+        </WISH.Provider>
+    )
 }
 
 export default WishContext
