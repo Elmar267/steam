@@ -9,6 +9,7 @@ import GameBasket from '../pages/GameBasket'
 import WishList from '../pages/WishList'
 import ScrollToTop from '../pages/ScrollToTop'
 import AdvancedSearch from '../pages/AdvancedSearch'
+import ErrorPage from '../pages/ErrorPage'
 
 function Router() {
   return (
@@ -16,6 +17,8 @@ function Router() {
         <ScrollToTop />
 
         <Routes>
+            <Route path="*" element={<ErrorPage />} />
+
             <Route path='/' element={<Layout/>}>
                 <Route index element={<Navigate to="/store" replace />} />
                 <Route path='/store' element={<Store />} />

@@ -2,6 +2,7 @@ import React, { useContext, useEffect, useState } from 'react';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
 import { DATA } from '../context/DataContext';
 import { Link } from 'react-router';
+import MainCardSkeleton from './MainCardSkeleton';
 
 function GameSlider() {
     const { product } = useContext(DATA)
@@ -71,10 +72,6 @@ function GameSlider() {
         });
     };
 
-    if (!filteredGames.length) {
-        return null;
-    }
-
     return (
         <div className="text-white mt-8 p-4 sm:p-6 max-w-[1250px] mx-auto">
             <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-3 mb-4">
@@ -92,7 +89,13 @@ function GameSlider() {
                     <div className="flex gap-2 sm:gap-3 transition-transform duration-300 ease-in-out"
                         style={{transform: `translateX(calc(-${currentIndex} * ((100% - ${(itemsPerPage - 1) * 8}px) / ${itemsPerPage} + 8px))`,}} >
 
-                        {filteredGames.map((game) => (
+                        {filteredGames.length === 0 ? (
+                                Array.from({ length: 5 }).map((_, i) => (
+                                    <MainCardSkeleton key={i} />
+                                ))
+                            ) :
+                        
+                        (filteredGames.map((game) => (
                             <Link id={game.id} to={`/game/${game.slug}`} key={game.id} className="flex-none cursor-pointer group/card"
                                 style={{width: `calc((100% - ${(itemsPerPage - 1) * 8}px) / ${itemsPerPage})`,}}>
                                 <div className="relative aspect-[16/9] overflow-hidden">
@@ -114,7 +117,8 @@ function GameSlider() {
                                     </div>
                                     )}
                             </Link>
-                        ))}
+                        )))
+                        }
                     </div>
                 </div>
                 <button onClick={nextSlide} className="absolute -right-3 sm:-right-7 z-10 text-[#67707b] hover:text-white">

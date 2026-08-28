@@ -2,6 +2,7 @@ import React, { useContext, useEffect, useState } from 'react';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
 import { DATA } from '../context/DataContext';
 import { Link } from 'react-router';
+import MainCardSkeleton from './MainCardSkeleton';
 
 function HorrorGames() {
     const { product } = useContext(DATA)
@@ -71,10 +72,6 @@ function HorrorGames() {
         });
     };
 
-    if (!filteredGames.length) {
-        return null;
-    }
-
   return (
     <div className="text-white mt-8 p-4 sm:p-6 max-w-[1250px] mx-auto">
         
@@ -107,7 +104,12 @@ function HorrorGames() {
                         + 8px))`,
                     }} >
 
-                    {filteredGames.map((game) => (
+                    {filteredGames.length === 0 ? (
+                        Array.from({ length: 5 }).map((_, i) => (
+                            <MainCardSkeleton key={i} />
+                        ))
+                    ) :
+                    filteredGames.map((game) => (
 
                         <Link id={game.id} to={`/game/${game.slug}`} key={game.id} className="flex-none cursor-pointer group/card"
                             style={{

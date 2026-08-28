@@ -1,6 +1,7 @@
 import React, { useContext } from 'react'
 import { DATA } from '../context/DataContext'
 import { Link } from 'react-router'
+import GameSkeleton from './GameSkeleton'
 
 function GameCard() {
     const { product } = useContext(DATA)
@@ -10,7 +11,12 @@ function GameCard() {
         <h3 className='text-2xl font-bold text-[#e5e5e5] py-3'>Strategy Games</h3>
         <div className='bg-[#1b3145] px-5 py-8'>
             <div className='flex flex-wrap justify-center gap-5'>
-                {product.filter((item) => item.category === "strategy").slice(0, 4).map((item, i ) => {
+                {product.length === 0 ? (
+                        Array.from({ length: 4 }).map((_, i) => (
+                            <GameSkeleton key={i} />
+                        ))
+                    ) :
+                (product.filter((item) => item.category === "strategy").slice(0, 4).map((item, i ) => {
                     return <Link id={item.id} to={`/game/${item.slug}`} key={i} className='w-[100%] md:w-[46%] transition-transform duration-200 hover:scale-[1.02]'>
                                 <div className='w-full'>
                                     <img className='w-[100%]' src={item.coverImage} alt={item.title} />
@@ -33,7 +39,8 @@ function GameCard() {
                                         )}
                                 </div>
                             </Link>
-                })}
+                }))
+                }
             </div>
         </div>
     </div>

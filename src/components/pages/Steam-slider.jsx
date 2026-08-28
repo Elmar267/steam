@@ -2,6 +2,7 @@ import React, { useContext, useEffect, useRef, useState } from "react";
 import { ChevronLeft, ChevronRight, TrendingUp } from "lucide-react";
 import { DATA } from "../context/DataContext";
 import { Link } from "react-router";
+import SteamSliderSkeleton from "./SteamSliderSkeleton";
 
 const PEEK_PCT = 8;
 const AUTOPLAY_TIME = 3000;
@@ -46,7 +47,7 @@ function SteamSlider() {
 
     const insetStyle = { paddingLeft: `${PEEK_PCT}%`, paddingRight: `${PEEK_PCT}%` }
 
-    if (!product || product.length === 0) return null
+    if (!product || product.length === 0) return <SteamSliderSkeleton />;
 
     return (
         <div className="w-full py-4 font-sans select-none" style={{ fontFamily: "'Motiva Sans', Arial, Helvetica, sans-serif" }} onMouseEnter={() => setPaused(true)} onMouseLeave={() => setPaused(false)}>

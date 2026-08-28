@@ -30,7 +30,7 @@ function Header() {
                     </div>
                 </div>
                 <div className='hidden md:flex lg:flex text-[#c5c3c0]'>
-                    <p className=' cursor-pointer'>Sign in</p>
+                    <p className='text-[13px] cursor-pointer'>Sign in</p>
                 </div>
                 <div className='flex md:hidden lg:hidden'>
                     <HiMenu onClick={() => setMenuOpen(!menuOpen)} className='text-[30px] cursor-pointer text-[#f4f5f9]' />

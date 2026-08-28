@@ -12,10 +12,6 @@ function DetailGames() {
     const { addWish } = useContext(WISH)
     const [selectedImage, setSelectedImage] = useState(null)
 
-    if(product.length === 0){
-        return <div><p>Loading...</p></div>
-    }
-
     const game = product.find(item => item.slug === slug)
 
     if(!game){

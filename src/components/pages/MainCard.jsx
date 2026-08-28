@@ -1,6 +1,7 @@
 import React, { useContext } from 'react'
 import { DATA } from '../context/DataContext'
 import { Link } from 'react-router'
+import MainCardSkeleton from './MainCardSkeleton'
 
 function MainCard() {
     const { product } = useContext(DATA)
@@ -10,7 +11,12 @@ function MainCard() {
         <h3 className='text-2xl font-bold text-[#e5e5e5] py-3'>Story Games</h3>
         <div className='bg-[#1b3145] p-5'>
             <div className='flex flex-wrap justify-center gap-5'>
-                {product.map((item, i ) => {
+                {product.length === 0 ? (
+                        Array.from({ length: 8 }).map((_, i) => (
+                            <MainCardSkeleton key={i} />
+                        ))
+                    ) :
+                (product.map((item, i ) => {
                     if(item.category == "story")
                         return <Link id={item.id} to={`/game/${item.slug}`} key={i} className='w-[100%] sm:w-[250px] md:w-[300px] lg:w-[270px] transition-transform duration-200 hover:scale-[1.02]'>
                                     <div className='w-full'>
@@ -34,7 +40,8 @@ function MainCard() {
                                         )}
                                     </div>
                                 </Link>
-                })}
+                }))
+                }
             </div>
         </div>
     </div>
