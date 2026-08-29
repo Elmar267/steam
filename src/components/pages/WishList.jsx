@@ -5,7 +5,7 @@ import { Link } from 'react-router';
 
 function WishList() {
     const { wish, removeFromWishlist } = useContext(WISH)
-    const { addBasket } = useContext(BASKET)
+    const { addBasket, basket } = useContext(BASKET)
 
   return (
     <div className='bg2 min-h-[90vh] mt-10 pt-20 pb-30'>
@@ -22,6 +22,8 @@ function WishList() {
                     {wish.length === 0 ? 
                         <p className='text-[17px] text-[#bbb] font-medium ml-5'>Your Wishlist is empty</p> :  
                         wish.map((item, i) => {
+                            const isAdded = basket.some(basketItem => basketItem.id === item.id)
+
                             return <div key={i} className="bg-[#2b3b49] p-3 mb-4 cursor-pointer">
                                         <div className='flex justify-end mb-1'>
                                             <div onClick={() => removeFromWishlist(item.id)} className='px-1 flex items-center justify-center rounded-xs text-[#aaa] bg-[#16232d] hover:text-white hover:bg-[#de3618] text-[12px] cursor-pointer'>
@@ -39,20 +41,27 @@ function WishList() {
                                                 </div>
                                                 <div className="flex flex-wrap items-center gap-2">
                                                     {item.discount === '0%' ? 
-                                                    (<div className="bg-[#00000066] px-2 py-1.5 flex justify-end items-center gap-1">
-                                                        <p className="text-[#eee] text-[16px] font-semibold">{item.newPrice}</p>
-                                                    </div>) :
-                                                    (<div className="p-1 flex flex-wrap items-center justify-end gap-1 mt-1">
-                                                        <div className="bg-[#8bc53f] text-black font-bold text-[15px] px-2 py-0.5 rounded-sm">
-                                                            {item.discount}
+                                                        (<div className="bg-[#00000066] px-2 py-1.5 flex justify-end items-center gap-1">
+                                                            <p className="text-[#eee] text-[16px] font-semibold">{item.newPrice === "$0" ? 'Free' : item.newPrice}</p>
+                                                        </div>) :
+                                                        (<div className="p-1 flex flex-wrap items-center justify-end gap-1 mt-1">
+                                                            <div className="bg-[#8bc53f] text-black font-bold text-[15px] px-2 py-0.5 rounded-sm">
+                                                                {item.discount}
+                                                            </div>
+                                                            <div className="bg-[#00000066] px-2 py-1.5 flex flex-wrap items-center gap-1">
+                                                                <p className="text-[#626366] line-through text-[15px]">{item.oldPrice}</p>
+                                                                <p className="text-[#eee] text-[16px] font-semibold">{item.newPrice}</p>
+                                                            </div>
                                                         </div>
-                                                        <div className="bg-[#00000066] px-2 py-1.5 flex flex-wrap items-center gap-1">
-                                                            <p className="text-[#626366] line-through text-[15px]">{item.oldPrice}</p>
-                                                            <p className="text-[#eee] text-[16px] font-semibold">{item.newPrice}</p>
-                                                        </div>
-                                                    </div>
                                                     )}
-                                                    <button onClick={() => addBasket(item.id, item.title, item.oldPrice, item.newPrice, item.discount, item.platform, item.coverImage)} className="bg-[#75a916] hover:bg-[#8ed629] rounded-xs cursor-pointer px-2 py-1.5 text-[14px] text-white font-medium">Add to Basket</button>
+                                                    <button onClick={() => addBasket(item.id, item.title, item.oldPrice, item.newPrice, item.discount, item.platform, item.coverImage, item.slug)}
+                                                        disabled={isAdded}
+                                                        className={`rounded-xs px-2 py-1.5 text-[14px] text-white font-medium ${
+                                                            isAdded
+                                                                ? "bg-gray-500 cursor-not-allowed"
+                                                                : "bg-[#75a916] hover:bg-[#8ed629] cursor-pointer"}`}>
+                                                        {isAdded ? "Already Added" : "Add to Basket"}
+                                                    </button>
                                                 </div>
                                             </div>
                                         </div>

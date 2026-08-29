@@ -26,7 +26,7 @@ function MainCard() {
                                         <p className='text-[12px] w-[70%] pt-0.5 text-[#eee]'>{item.title.slice(0, 29)}</p>
                                         {item.discount === '0%' ? 
                                             (<div className="bg-[#00000066] px-2 py-1.5 flex items-center gap-1">
-                                                <p className="text-[#eee] text-[14px] font-semibold">{item.newPrice}</p>
+                                                <p className="text-[#eee] text-[14px] font-semibold">{item.newPrice === "$0" ? 'Free' : item.newPrice}</p>
                                             </div>) :
                                             (<div className="bg-[#00000033] p-1 flex items-center justify-end gap-1 mt-1">
                                                 <div className="bg-[#8bc53f] text-black font-bold text-[13px] px-2 py-0.5 rounded-sm">

@@ -125,7 +125,7 @@ function HorrorGames() {
 
                             {game.discount === '0%' ?
                                 (<div className="bg-[#00000066] px-2 py-1.5 flex justify-end items-center gap-1">
-                                    <p className="text-[#eee] text-[14px] font-semibold">{game.newPrice}</p>
+                                    <p className="text-[#eee] text-[14px] font-semibold">{game.newPrice === "$0" ? 'Free' : game.newPrice}</p>
                                 </div>) :
                                 (<div className="bg-[#00000066] p-0.5 flex items-center justify-end gap-1 mt-1">
                                     <div className="bg-[#8bc53f] text-black font-bold text-[12px] px-2 py-0.5 rounded-sm">

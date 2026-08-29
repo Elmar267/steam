@@ -44,18 +44,18 @@ function GameBasket() {
                                                     </div>
                                                     <div className="flex flex-wrap items-center gap-2">
                                                         {item.discount === '0%' ? 
-                                                        (<div className="bg-[#00000066] px-2 py-1.5 flex justify-end items-center gap-1">
-                                                            <p className="text-[#eee] text-[16px] font-semibold">{item.newPrice}</p>
-                                                        </div>) :
-                                                        (<div className="p-1 flex flex-wrap items-center justify-end gap-1 mt-1">
-                                                            <div className="bg-[#8bc53f] text-black font-bold text-[15px] px-2 py-0.5 rounded-sm">
-                                                                {item.discount}
+                                                            (<div className="bg-[#00000066] px-2 py-1.5 flex justify-end items-center gap-1">
+                                                                <p className="text-[#eee] text-[16px] font-semibold">{item.newPrice === "$0" ? 'Free' : item.newPrice}</p>
+                                                            </div>) :
+                                                            (<div className="p-1 flex flex-wrap items-center justify-end gap-1 mt-1">
+                                                                <div className="bg-[#8bc53f] text-black font-bold text-[15px] px-2 py-0.5 rounded-sm">
+                                                                    {item.discount}
+                                                                </div>
+                                                                <div className="bg-[#00000066] px-2 py-1.5 flex flex-wrap items-center gap-1">
+                                                                    <p className="text-[#626366] line-through text-[15px]">{item.oldPrice}</p>
+                                                                    <p className="text-[#eee] text-[16px] font-semibold">{item.newPrice}</p>
+                                                                </div>
                                                             </div>
-                                                            <div className="bg-[#00000066] px-2 py-1.5 flex flex-wrap items-center gap-1">
-                                                                <p className="text-[#626366] line-through text-[15px]">{item.oldPrice}</p>
-                                                                <p className="text-[#eee] text-[16px] font-semibold">{item.newPrice}</p>
-                                                            </div>
-                                                        </div>
                                                         )}
                                                     </div>
                                                 </div>

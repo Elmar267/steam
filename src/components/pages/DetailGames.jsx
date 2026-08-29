@@ -4,13 +4,12 @@ import { DATA } from '../context/DataContext'
 import { BASKET } from '../context/BasketContext';
 import { FaShoppingCart, FaStar } from "react-icons/fa";
 import { WISH } from '../context/WishContext';
-import ErrorPage from './ErrorPage';
 
 function DetailGames() {
     const { slug } = useParams()
     const { product } = useContext(DATA)
-    const { addBasket } = useContext(BASKET)
-    const { addWish } = useContext(WISH)
+    const { addBasket, basket } = useContext(BASKET)
+    const { addWish, wish } = useContext(WISH)
     const [selectedImage, setSelectedImage] = useState(null)
 
     const game = product.find(item => item.slug === slug)
@@ -28,6 +27,8 @@ function DetailGames() {
 
     const galleryImages = game.images?.length ? game.images : Array(6).fill(game.coverImage)
     const mainImage = selectedImage || game.coverImage
+    const isAdded = basket.some(item => item.id === game.id)
+    const isAddedWish = wish.some(item => item.id === game.id)
 
     return (
     <div className="min-h-screen bg2 text-white mt-8 pt-20 pb-20">
@@ -82,7 +83,13 @@ function DetailGames() {
                 </div>
             </div>
             <div className="bg-[#111d28] p-2 flex flex-wrap justify-center sm:justify-between gap-1 mt-1">
-                <button  onClick={() => addWish(game.id, game.title, game.oldPrice, game.newPrice, game.discount, game.platform, game.coverImage)} className="bg-[#315a75] hover:bg-[#4f95bd] cursor-pointer px-3 py-1.5 text-sm">Add to Wishlist</button>
+                <button onClick={() => addWish(game.id, game.title, game.oldPrice, game.newPrice, game.discount, game.platform, game.coverImage)}disabled={isAdded}
+                    className={`rounded-xs px-2 py-1.5 text-[14px] text-white font-medium ${
+                        isAddedWish
+                            ? "bg-gray-500 cursor-not-allowed"
+                            : "bg-[#315a75] hover:bg-[#4f95bd] cursor-pointer"}`}>
+                    {isAddedWish ? "Already Added" : "Add to Wishlist"}
+                </button>
                 <button className="bg-[#315a75] hover:bg-[#4f95bd] px-3 py-1.5 text-sm">View Your Queue →</button>
             </div>
             <div className="grid grid-cols-1 lg:grid-cols-[1fr_280px] gap-3 mt-10">
@@ -98,20 +105,27 @@ function DetailGames() {
                             </div>
                             <div className="flex flex-wrap items-center gap-2">
                                 {game.discount === '0%' ? 
-                                (<div className="bg-[#00000066] px-2 py-1.5 rounded-xs flex justify-end items-center gap-1">
-                                    <p className="text-[#eee] text-[15px] font-semibold">{game.newPrice}</p>
-                                </div>) :
-                                (<div className="p-1 flex items-center justify-end gap-1 mt-1">
-                                    <div className="bg-[#8bc53f] text-black font-bold text-[14px] px-2 py-0.5 rounded-sm">
-                                        {game.discount}
+                                    (<div className="bg-[#00000066] px-2 py-1.5 rounded-xs flex justify-end items-center gap-1">
+                                        <p className="text-[#eee] text-[15px] font-semibold">{game.newPrice === "$0" ? 'Free' : game.newPrice}</p>
+                                    </div>) :
+                                    (<div className="p-1 flex items-center justify-end gap-1 mt-1">
+                                        <div className="bg-[#8bc53f] text-black font-bold text-[14px] px-2 py-0.5 rounded-sm">
+                                            {game.discount}
+                                        </div>
+                                        <div className="bg-[#00000066]  rounded-xs px-2 py-1.5 flex items-center gap-1">
+                                            <p className="text-[#626366] line-through text-[15px]">{game.oldPrice}</p>
+                                            <p className="text-[#eee] text-[15px] font-semibold">{game.newPrice}</p>
+                                        </div>
                                     </div>
-                                    <div className="bg-[#00000066]  rounded-xs px-2 py-1.5 flex items-center gap-1">
-                                        <p className="text-[#626366] line-through text-[15px]">{game.oldPrice}</p>
-                                        <p className="text-[#eee] text-[15px] font-semibold">{game.newPrice}</p>
-                                    </div>
-                                </div>
                                 )}
-                                <button onClick={() => addBasket(game.id, game.title, game.oldPrice, game.newPrice, game.discount, game.platform, game.coverImage, game.slug)} className="bg-[#75a916] hover:bg-[#8ed629] rounded-xs cursor-pointer px-2 py-1.5 text-[14px] text-white font-medium">Add to Basket</button>
+                                <button onClick={() => addBasket(game.id, game.title, game.oldPrice, game.newPrice, game.discount, game.platform, game.coverImage, game.slug)}
+                                    disabled={isAdded}
+                                    className={`rounded-xs px-2 py-1.5 text-[14px] text-white font-medium ${
+                                        isAdded
+                                            ? "bg-gray-500 cursor-not-allowed"
+                                            : "bg-[#75a916] hover:bg-[#8ed629] cursor-pointer"}`}>
+                                    {isAdded ? "Already Added" : "Add to Basket"}
+                                </button>
                             </div>
                         </div>
                     </div>
