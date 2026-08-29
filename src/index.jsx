@@ -5,15 +5,18 @@ import App from './App.jsx'
 import DataContext from './components/context/DataContext.jsx'
 import BasketContext from './components/context/BasketContext.jsx'
 import WishContext from './components/context/WishContext.jsx'
+import ErrorBoundary from './components/pages/ErrorBoundary.jsx'
 
 createRoot(document.getElementById('root')).render(
-  <DataContext>
-    <BasketContext>
-      <WishContext>
-        <BrowserRouter>
-          <App />
-        </BrowserRouter>
-      </WishContext>
-    </BasketContext>
-  </DataContext>
+  <ErrorBoundary>
+    <DataContext>
+      <BasketContext>
+        <WishContext>
+          <BrowserRouter>
+            <App />
+          </BrowserRouter>
+        </WishContext>
+      </BasketContext>
+    </DataContext>
+  </ErrorBoundary>
 )

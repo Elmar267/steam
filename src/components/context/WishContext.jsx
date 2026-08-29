@@ -27,12 +27,8 @@ function WishContext({ children }) {
         setWish(wish.filter(item => item.id !== id))
     }
 
-    function clearWishlist() {
-        setWish([])
-    }
-
     return (
-        <WISH.Provider value={{ addWish, wish, removeFromWishlist, clearWishlist }}>
+        <WISH.Provider value={{ addWish, wish, removeFromWishlist }}>
             {children}
         </WISH.Provider>
     )

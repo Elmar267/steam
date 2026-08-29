@@ -11,9 +11,9 @@ function GameBasket() {
     const TotalPrice = basket.reduce((price, item) => {
         return price + Number(item.newPrice.replace('$', ''));
     }, 0);
-
+    
   return (
-    <div className='bg2 mt-8 pt-30 pb-30'>
+    <div className='bg2 min-h-[90vh] mt-8 pt-20 pb-30'>
         <div className='max-w-[1250px] mx-auto px-5 py-8'>
             <div className="flex flex-wrap justify-between items-center gap-3 mb-4 px-0 sm:px-4">
                 <h3 className="text-[24px] font-medium text-[#e5e5e5]">Your Shopping Cart</h3>
@@ -39,7 +39,7 @@ function GameBasket() {
                                                 </div>
                                                 <div className='w-[100%] sm:w-[76%] flex flex-wrap justify-between gap-3'>
                                                     <div>
-                                                        <p className="text-[16px] text-[#e6e6e6]">{item.title}</p>
+                                                        <p className="text-[17px]  text-[#e6e6e6]">{item.title}</p>
                                                         <p className="text-xs text-[#75a7c9]">Digital Edition</p>
                                                     </div>
                                                     <div className="flex flex-wrap items-center gap-2">

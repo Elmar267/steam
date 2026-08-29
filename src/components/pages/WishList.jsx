@@ -4,25 +4,18 @@ import { BASKET } from '../context/BasketContext';
 import { Link } from 'react-router';
 
 function WishList() {
-    const { wish, removeFromWishlist, clearWishlist } = useContext(WISH)
+    const { wish, removeFromWishlist } = useContext(WISH)
     const { addBasket } = useContext(BASKET)
 
-    const CountOldPrice = wish.reduce((price, item) => {
-        return price + Number(item.oldPrice.replace('$', ''));
-    }, 0);
-    const TotalPrice = wish.reduce((price, item) => {
-        return price + Number(item.newPrice.replace('$', ''));
-    }, 0);
-
   return (
-    <div className='bg2 mt-10 pt-30 pb-30'>
+    <div className='bg2 min-h-[90vh] mt-10 pt-20 pb-30'>
         <div className='max-w-[1250px] mx-auto px-5 py-8'>
             <div className="flex flex-wrap justify-between items-center gap-3 mb-4 px-0 sm:px-4">
                 <h3 className="text-[24px] font-medium text-[#e5e5e5]">All Games</h3>
                 <Link to={'/store'} className="bg-[#315b78] hover:bg-[#4f95bd] px-3 py-1.5 text-sm text-white cursor-pointer">Back to store</Link>
             </div>
             <div className="flex flex-wrap gap-3 items-start">
-                <div className='w-[100%] md:w-[67%]  order-1 md:order-0'>
+                <div className='w-[100%] order-1 md:order-0'>
                     <div className="bg-[#263746] flex items-center py-4 px-4 mb-4">
                         <p className="text-base text-[#ddd]">Check out the entire Wishlist</p>
                     </div>
@@ -41,8 +34,8 @@ function WishList() {
                                             </div>
                                             <div className='w-[100%] sm:w-[76%] flex flex-wrap justify-between gap-3'>
                                                 <div>
-                                                    <p className="text-[16px] text-[#e6e6e6]">{item.title}</p>
-                                                    <p className="text-xs text-[#75a7c9]">Digital Edition</p>
+                                                    <p className="text-[20px] text-[#e6e6e6]">{item.title}</p>
+                                                    <p className="text-[#75a7c9]">Digital Edition</p>
                                                 </div>
                                                 <div className="flex flex-wrap items-center gap-2">
                                                     {item.discount === '0%' ? 
@@ -65,26 +58,6 @@ function WishList() {
                                         </div>
                                     </div>
                     })}
-                </div>
-                <div className="bg-[#16232d] w-[100%] md:w-[30%] p-4">
-                    <div className='flex flex-wrap justify-between gap-3 py-1'>
-                        <p className='text-[#eee] text-[13px] font-medium'>Old Price:</p>
-                        <p className='text-[#eee] text-[15px] font-medium'>${CountOldPrice.toFixed(2)}</p>
-                    </div>
-                    <div className='flex flex-wrap justify-between gap-3 py-1'>
-                        <p className='text-[#eee] text-[13px] font-medium'>Game count:</p>
-                        <p className='text-[#eee] text-[15px] font-medium'>{wish.length}</p>
-                    </div>
-                    <div className='flex flex-wrap justify-between gap-3 py-1.5'>
-                        <p className='text-[#eee] text-[15px] font-medium'>Total Price:</p>
-                        <p className='text-[#eee] text-[17px] font-medium'>${TotalPrice.toFixed(2)}</p>
-                    </div>
-                    <div className="mb-4 mt-2">
-                        <div className="flex flex-wrap gap-1.5">
-                            <button onClick={() => clearWishlist()} className='text-[#fff] p-1 w-full rounded-xs bg-[#45acff] hover:bg-[#45bbfd]'>Remove all items</button>
-                        </div>
-                        <p className="text-[13px] pt-2 text-[#eee]">The adults in your Steam Family will be notified of your purchase request</p>
-                    </div>
                 </div>
             </div>
         </div>
