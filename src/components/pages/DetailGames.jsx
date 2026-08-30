@@ -83,7 +83,7 @@ function DetailGames() {
                 </div>
             </div>
             <div className="bg-[#111d28] p-2 flex flex-wrap justify-center sm:justify-between gap-1 mt-1">
-                <button onClick={() => addWish(game.id, game.title, game.oldPrice, game.newPrice, game.discount, game.platform, game.coverImage)}disabled={isAdded}
+                <button onClick={() => addWish(game.id, game.title, game.oldPrice, game.newPrice, game.discount, game.platform, game.coverImage)} disabled={isAddedWish}
                     className={`rounded-xs px-2 py-1.5 text-[14px] text-white font-medium ${
                         isAddedWish
                             ? "bg-gray-500 cursor-not-allowed"

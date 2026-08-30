@@ -78,9 +78,9 @@ function GameBasket() {
                     </div>
                     <div className="pb-4">
                         <p className="text-[13px] py-2 text-[#eee]">Sales tax will be calculated during checkout where applicable</p>
-                        <div className="flex flex-wrap gap-1.5">
+                        <Link  to={'/login'} className="flex flex-wrap gap-1.5">
                             <button className='text-[#fff] p-1 w-full rounded-xs bg-[#45acff] hover:bg-[#45bbfd]'>Continue to Payment</button>
-                        </div>
+                        </Link>
                     </div>
                     <div className="pb-4">
                         <div className="flex flex-wrap gap-1.5">

@@ -1,11 +1,25 @@
-import React, { useState } from 'react'
-import { FaSteam } from "react-icons/fa";
+import React, { useEffect, useState } from 'react'
 import { HiMenu } from "react-icons/hi";
 import { Link } from 'react-router';
+import { onAuthStateChanged, signOut } from 'firebase/auth';
 import MobileSidebar from './pages/MobileSidebar';
+import { auth } from '../firebase';
 
 function Header() {
     const [menuOpen, setMenuOpen] = useState(false);
+    const [user, setUser] = useState(null);
+
+    useEffect(() => {
+        const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
+            setUser(currentUser);
+        });
+
+        return () => unsubscribe();
+    }, []);
+
+    const handleLogout = async () => {
+        await signOut(auth);
+    };
 
   return (
     <header className='bg-[#171d25] fixed top-0 left-0 right-0 z-99'>
@@ -23,14 +37,30 @@ function Header() {
                             <li>
                                 <Link to={'/about'} className='text-[#dcdedf] font-medium'>ABOUT</Link>
                             </li>
-                            <li>
-                                <Link to={'/support'} className='text-[#dcdedf] font-medium'>SUPPORT</Link>
-                            </li>
                         </ul>
                     </div>
                 </div>
-                <div className='hidden md:flex lg:flex text-[#c5c3c0]'>
-                    <p className='text-[13px] cursor-pointer'>Sign in</p>
+                <div className='hidden md:flex lg:flex items-center gap-2'>
+                    {user ? (
+                        <>
+                            <div className='flex items-center gap-2'>
+                                <div className='w-[32px] h-[32px] rounded-full bg-[#66c0f4] flex items-center justify-center text-[#171d25] font-medium text-[14px]'>
+                                    {(user.displayName || user.email).charAt(0).toUpperCase()}
+                                </div>
+                                <span className='text-[#c5c3c0] text-[14px]'>
+                                    {user.displayName || user.email}
+                                </span>
+                            </div>
+                            <span className='text-[#c5c3c0]'>|</span>
+                            <button onClick={handleLogout} className='text-[#66c0f4] text-[14px] hover:text-white'>
+                                Log out
+                            </button>
+                        </>
+                    ) : (
+                        <Link to={'/login'} className='text-[#c5c3c0]'>
+                            <p className='text-[14px] cursor-pointer'>Log in</p>
+                        </Link>
+                    )}
                 </div>
                 <div className='flex md:hidden lg:hidden'>
                     <HiMenu onClick={() => setMenuOpen(!menuOpen)} className='text-[30px] cursor-pointer text-[#f4f5f9]' />
