@@ -4,10 +4,11 @@ import { auth, googleProvider } from "../../firebase"
 import { signInWithEmailAndPassword, signInWithPopup } from "firebase/auth";
 
 function Login() {
-    const [email, setEmail] = useState("");
-    const [password, setPassword] = useState("");
-    const [error, setError] = useState("");
-    const navigate = useNavigate();
+    const [email, setEmail] = useState("")
+    const [password, setPassword] = useState("")
+    const [error, setError] = useState("")
+    const [showPassword, setShowPassword] = useState(false)
+    const navigate = useNavigate()
 
     const handleLogin = async (e) => {
         e.preventDefault();
@@ -52,8 +53,12 @@ function Login() {
                         <label className="block text-[13px] text-[#d6d7d8] mb-2">
                             Password
                         </label>
-                        <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} placeholder="Password" required
-                            className="w-full h-[42px] bg-[#32353c] border border-[#000] rounded-[2px] px-3 rounded-xs text-white outline-none focus:border-[#66c0f4] mb-4" />
+                        <div className="relative mb-4">
+                            <input type={showPassword ? "text" : "password"} value={password} onChange={(e) => setPassword(e.target.value)} placeholder="Password" required className="w-full h-[42px] bg-[#32353c] border border-[#000] rounded-[2px] px-3 pr-16 rounded-xs text-white outline-none focus:border-[#66c0f4]" />
+                            <button type="button" onClick={() => setShowPassword(!showPassword)} className="absolute right-3 top-1/2 -translate-y-1/2 text-[12px] text-[#8f98a0] hover:text-white cursor-pointer">
+                                {showPassword ? "Hide" : "Show"}
+                            </button>
+                        </div>
                         {error && (
                             <p className="text-red-400 text-[13px] mb-4">
                                 {error}
