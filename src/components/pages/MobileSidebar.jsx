@@ -70,7 +70,7 @@ function MobileSidebar({ isOpen, onClose }) {
             )}
           </div>
             <li>
-                <Link to={'/'} className="block px-5 py-4 text-white font-semibold text-lg border-b border-slate-700">STORE</Link>
+                <Link to={'/store'} className="block px-5 py-4 text-white font-semibold text-lg border-b border-slate-700">STORE</Link>
             </li>
             <li>
                 <Link to={'/about'} className="block px-5 py-4 text-white font-semibold text-lg border-b border-slate-700">ABOUT</Link>

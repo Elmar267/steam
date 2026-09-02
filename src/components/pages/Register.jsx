@@ -50,7 +50,7 @@ function Register() {
     return (
         <div className="min-h-screen bg-[#171d25] text-white flex items-center justify-center px-4">
             <div className="w-full max-w-[400px]">
-                <h1 className="text-center text-[28px] font-light mb-8">Qeydiyyat</h1>
+                <h1 className="text-center text-[28px] font-medium mb-8">Sign in</h1>
                 <form onSubmit={handleRegister} className="bg-[#1b2838] p-6">
                     <label className="block text-[13px] text-[#d6d7d8] mb-2">Name</label>
                     <input type="text" value={name} onChange={(e) => setName(e.target.value)} placeholder="Ad Soyad" required className="w-full h-[42px] bg-[#32353c] border border-[#000] rounded-[2px] px-3 text-white outline-none focus:border-[#66c0f4] mb-5" />
