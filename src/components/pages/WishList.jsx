@@ -61,7 +61,7 @@ function WishList() {
                                                             isAdded ? "bg-[#6a7282] hover:bg-[#717171] cursor-pointer" :
                                                             "bg-[#75a916] hover:bg-[#8ed629] cursor-pointer"
                                                         }`} >
-                                                        {isAdded ? "Remove from Basket" : "Add to Basket"}
+                                                        {isAdded ? "Remove" : "Add to Basket"}
                                                     </button>
                                                 </div>
                                             </div>
