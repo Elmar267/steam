@@ -12,7 +12,6 @@ function CommunitySection() {
                         <img src="https://cdn.fastly.steamstatic.com/store/about/cta_hero_community_pt3.png" alt="Community" className="w-full object-contain" />
                     </div>
                 </section>
-
                 <section className="flex flex-wrap items-center gap-5 my-5">
                     <div className="flex justify-center w-full md:w-[50%] order-1 md:order-0">
                         <img src="https://cdn.fastly.steamstatic.com/store/about/cta_hero_hardware.png" alt="Steam Hardware" className="w-full object-contain" />
@@ -23,7 +22,6 @@ function CommunitySection() {
                         <a href="#" className="text-[#1a9fff] text-[15px] hover:text-white">Experience Steam Hardware →</a>
                     </div>
                 </section>
-
                 <section className="flex flex-wrap items-center gap-5 my-5">
                     <div className="w-full md:w-[47%]">
                         <p className="text-[9px] tracking-[2px] mb-2">STEAM<span className="text-[#aaa]">WORKS</span></p>

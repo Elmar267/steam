@@ -6,8 +6,9 @@ import MobileSidebar from './pages/MobileSidebar';
 import { auth } from '../firebase';
 
 function Header() {
-    const [menuOpen, setMenuOpen] = useState(false);
-    const [user, setUser] = useState(null);
+    const [menuOpen, setMenuOpen] = useState(false)
+    const [user, setUser] = useState(null)
+    const [showLogout, setShowLogout] = useState(false)
 
     useEffect(() => {
         const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
@@ -42,23 +43,20 @@ function Header() {
                 </div>
                 <div className='hidden md:flex lg:flex items-center gap-2'>
                     {user ? (
-                        <>
-                            <div className='flex items-center gap-2'>
-                                <div className='w-[32px] h-[32px] rounded-full bg-[#66c0f4] flex items-center justify-center text-[#171d25] font-medium text-[14px]'>
+                        <div className="relative">
+                            <div onClick={() => setShowLogout(!showLogout)} className="flex items-center gap-2 cursor-pointer" >
+                                <span className="text-[#c5c3c0] text-[14px]"> {user.displayName || user.email}</span>
+                                <div className="w-[32px] h-[32px] rounded-full bg-[#66c0f4] flex items-center justify-center">
                                     {(user.displayName || user.email).charAt(0).toUpperCase()}
                                 </div>
-                                <span className='text-[#c5c3c0] text-[14px]'>
-                                    {user.displayName || user.email}
-                                </span>
                             </div>
-                            <span className='text-[#c5c3c0]'>|</span>
-                            <button onClick={handleLogout} className='text-[#66c0f4] text-[14px] hover:text-white'>
-                                Log out
-                            </button>
-                        </>
-                    ) : (
-                        <Link to={'/login'} className='text-[#c5c3c0]'>
-                            <p className='text-[14px] cursor-pointer'>Log in</p>
+                            {showLogout && (
+                                <button onClick={handleLogout}className="absolute right-0 mt-2 bg-[#171d25] cursor-pointer text-[#66c0f4] px-4 py-2">Log out</button>
+                            )}
+                        </div>
+                        ) : (
+                        <Link to="/login">
+                            <p className='text-[#c5c3c0] text-[14px]'>Log in</p>
                         </Link>
                     )}
                 </div>

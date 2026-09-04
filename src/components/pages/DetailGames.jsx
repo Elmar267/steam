@@ -8,8 +8,8 @@ import { WISH } from '../context/WishContext';
 function DetailGames() {
     const { slug } = useParams()
     const { product } = useContext(DATA)
-    const { addBasket, basket } = useContext(BASKET)
-    const { addWish, wish } = useContext(WISH)
+    const { addBasket, removeFromBasket, basket } = useContext(BASKET)
+    const { addWish, removeFromWishlist, wish } = useContext(WISH)
     const [selectedImage, setSelectedImage] = useState(null)
 
     const game = product.find(item => item.slug === slug)
@@ -45,9 +45,9 @@ function DetailGames() {
                     <div className="relative bg-black aspect-video">
                         <img src={mainImage} alt={game.title} className="w-full h-full object-cover" />
                     </div>
-                    <div className="flex gap-1 p-1 bg-[#111a22] overflow-x-auto">
+                    <div className="flex gap-1 p-1 bg-[#111a22] justify-center overflow-x-auto">
                         {galleryImages.map((coverImage, index) => (
-                            <div key={index} onClick={() => setSelectedImage(coverImage)} className={`shrink-0 w-[90px] h-[50px] cursor-pointer ${selectedImage === coverImage ? "ring-2 ring-white" : ""}`}>
+                            <div key={index} onClick={() => setSelectedImage(coverImage)} className={`shrink-0 w-[130px] h-[70px] cursor-pointer ${selectedImage === coverImage ? "ring-2 ring-white" : ""}`}>
                                 <img src={coverImage} alt="" className={`w-full h-full object-cover ${selectedImage === coverImage ? "opacity-100" : "opacity-70 hover:opacity-100"}`} />
                             </div>
                         ))}
@@ -56,7 +56,7 @@ function DetailGames() {
                 <div className="bg-[#171e25] p-4">
                     <img src={game.coverImage} alt={game.title} className="w-full h-[150px] object-cover mb-4" />
                     <p className="text-[#ccc] text-sm leading-5 mb-5">{game.aboutGame}</p>
-                    <div className="space-y-2 text-sm">
+                    <div className="space-y-2 mt-6 text-sm">
                         <div className="flex justify-between gap-3">
                             <span className="text-[#7d8992] text-[13px]">PLAYER RATING:</span>
                             <span className="text-[#67a9d8]">{game.playerRating}</span>
@@ -74,7 +74,7 @@ function DetailGames() {
                             <span className="text-[#67a9d8]">{game.publisher}</span>
                         </div>
                     </div>
-                    <p className="text-xs text-[#6d7982] mt-5 mb-2">Popular user-defined tags:</p>
+                    <p className="text-[13px] text-[#6d7982] mt-6 mb-2">Popular user-defined tags:</p>
                     <div className="flex flex-wrap gap-1">
                         {game.genres?.map((item,index) => (
                             <span key={index} className="text-xs text-[#67a9d8] bg-[#294b61] px-2 py-1">{item}</span>
@@ -82,13 +82,15 @@ function DetailGames() {
                     </div>
                 </div>
             </div>
-            <div className="bg-[#111d28] p-2 flex flex-wrap justify-center sm:justify-between gap-1 mt-1">
-                <button onClick={() => addWish(game.id, game.title, game.oldPrice, game.newPrice, game.discount, game.platform, game.coverImage)} disabled={isAddedWish}
-                    className={`rounded-xs px-2 py-1.5 text-[14px] text-white font-medium ${
-                        isAddedWish
-                            ? "bg-gray-500 cursor-not-allowed"
-                            : "bg-[#315a75] hover:bg-[#4f95bd] cursor-pointer"}`}>
-                    {isAddedWish ? "Already Added" : "Add to Wishlist"}
+            <div className="bg-[#111d28] p-2 flex flex-wrap justify-center sm:justify-between gap-3 mt-1">
+                <button onClick={() => { isAddedWish ? removeFromWishlist(game.id) :
+                            addWish( game.id, game.title, game.oldPrice, game.newPrice, game.discount, game.platform, game.coverImage, game.slug )
+                    }}
+                    className={`rounded-xs px-3 py-1.5 text-sm text-white font-medium ${
+                        isAddedWish ? "bg-[#6a7282] hover:bg-[#717171] cursor-pointer" :
+                            "bg-[#315a75] hover:bg-[#4f95bd] cursor-pointer"
+                    }`} >
+                    {isAddedWish ? "Remove from wish" : "Add to wish"}
                 </button>
                 <button className="bg-[#315a75] hover:bg-[#4f95bd] px-3 py-1.5 text-sm">View Your Queue →</button>
             </div>
@@ -118,13 +120,14 @@ function DetailGames() {
                                         </div>
                                     </div>
                                 )}
-                                <button onClick={() => addBasket(game.id, game.title, game.oldPrice, game.newPrice, game.discount, game.platform, game.coverImage, game.slug)}
-                                    disabled={isAdded}
+                                <button onClick={() => { isAdded ? removeFromBasket(game.id) :
+                                            addBasket( game.id, game.title, game.oldPrice, game.newPrice, game.discount, game.platform, game.coverImage, game.slug )
+                                    }}
                                     className={`rounded-xs px-2 py-1.5 text-[14px] text-white font-medium ${
-                                        isAdded
-                                            ? "bg-gray-500 cursor-not-allowed"
-                                            : "bg-[#75a916] hover:bg-[#8ed629] cursor-pointer"}`}>
-                                    {isAdded ? "Already Added" : "Add to Basket"}
+                                        isAdded ? "bg-[#6a7282] hover:bg-[#717171] cursor-pointer" :
+                                         "bg-[#75a916] hover:bg-[#8ed629] cursor-pointer"
+                                    }`} >
+                                    {isAdded ? "Remove from Basket" : "Add to Basket"}
                                 </button>
                             </div>
                         </div>

@@ -2,6 +2,7 @@ import React from 'react'
 import { Link } from 'react-router'
 
 function ErrorPage() {
+    
     return (
         <div className="min-h-screen flex flex-col items-center justify-center bg-[#171d25] text-white">
             <h1 className="text-8xl font-bold text-[#66c0f4]">404</h1>

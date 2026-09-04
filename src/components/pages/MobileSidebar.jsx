@@ -6,7 +6,8 @@ import { auth } from "../../firebase";
 import { onAuthStateChanged, signOut } from 'firebase/auth';
 
 function MobileSidebar({ isOpen, onClose }) {
-  const [user, setUser] = useState(null);
+  const [user, setUser] = useState(null)
+  const [showLogout, setShowLogout] = useState(false)
   
   useEffect(() => {
       const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
@@ -49,23 +50,20 @@ function MobileSidebar({ isOpen, onClose }) {
         <ul>
           <div className='flex items-center justify-center gap-2 px-5 py-4 border-b border-slate-700'>
             {user ? (
-                <>
-                    <div className='flex items-center gap-2'>
-                        <div className='w-[32px] h-[32px] rounded-full bg-[#66c0f4] flex items-center justify-center text-[#171d25] font-medium text-[16px]'>
+                <div className="relative">
+                    <div onClick={() => setShowLogout(!showLogout)} className="flex items-center gap-2 cursor-pointer" >
+                        <span className="text-[#c5c3c0] text-[14px]"> {user.displayName || user.email}</span>
+                        <div className="w-[32px] h-[32px] rounded-full bg-[#66c0f4] flex items-center justify-center">
                             {(user.displayName || user.email).charAt(0).toUpperCase()}
                         </div>
-                        <span className='text-[#c5c3c0] text-[14px]'>
-                            {user.displayName || user.email}
-                        </span>
                     </div>
-                    <span className='text-[#c5c3c0]'>|</span>
-                    <button onClick={handleLogout} className='text-[#66c0f4] text-[16px] hover:text-white'>
-                        Log out
-                    </button>
-                </>
-            ) : (
-                <Link to={'/login'} className='text-[#c5c3c0]'>
-                    <p className='text-[16px] cursor-pointer'>Log in</p>
+                    {showLogout && (
+                        <button onClick={handleLogout}className="absolute right-0 mt-2 bg-[#171d25] cursor-pointer text-[#66c0f4] px-4 py-2">Log out</button>
+                    )}
+                </div>
+                ) : (
+                <Link to="/login">
+                    <p className='text-[#c5c3c0]'>Log in</p>
                 </Link>
             )}
           </div>

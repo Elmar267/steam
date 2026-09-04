@@ -57,7 +57,6 @@ function ActionGames() {
             if (prev === 0) {
                 return maxIndex;
             }
-
             return prev - 1;
         });
     };
@@ -67,7 +66,6 @@ function ActionGames() {
             if (prev >= maxIndex) {
                 return 0;
             }
-
             return prev + 1;
         });
     };
@@ -75,7 +73,6 @@ function ActionGames() {
 
   return (
     <div className="text-white mt-8 p-4 sm:p-6 max-w-[1250px] mx-auto">
-
         <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-3 mb-4">
             <h2 className="text-2xl font-bold text-[#e5e5e5]">
                 Action Games
@@ -88,8 +85,7 @@ function ActionGames() {
                 <ChevronLeft className="w-7 h-7 sm:w-9 sm:h-9" />
             </button>
             <div className="overflow-hidden w-full">
-                <div
-                    className="flex gap-2 sm:gap-3 transition-transform duration-300 ease-in-out"
+                <div className="flex gap-2 sm:gap-3 transition-transform duration-300 ease-in-out"
                     style={{
                         transform: `translateX(calc(
                         -${currentIndex} *
@@ -104,7 +100,6 @@ function ActionGames() {
                         ))
                     ) :
                     (filteredGames.map((game) => (
-
                         <Link id={game.id} to={`/game/${game.slug}`} key={game.id} className="flex-none cursor-pointer group/card"
                             style={{
                                 width: `calc(
@@ -132,35 +127,25 @@ function ActionGames() {
                         </Link>
                     )))
                     }
-
                 </div>
-
             </div>
-
             <button
                 onClick={nextSlide}
                 className="absolute -right-3 sm:-right-7 z-10 text-[#67707b] hover:text-white"
             >
                 <ChevronRight className="w-7 h-7 sm:w-9 sm:h-9" />
             </button>
-
         </div>
-
         <div className="flex justify-center gap-1.5 mt-4">
-
             {Array.from({ length: maxIndex + 1 }).map((_, index) => (
-                <button
-                    key={index}
-                    onClick={() => setCurrentIndex(index)}
+                <button key={index} onClick={() => setCurrentIndex(index)}
                     className={`h-2 rounded-full transition-all ${currentIndex === index
                         ? 'w-6 bg-white'
                         : 'w-2 bg-[#ffffff33]'
                         }`}
                 />
             ))}
-
         </div>
-
     </div>
 );
 }

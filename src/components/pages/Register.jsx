@@ -65,11 +65,8 @@ function Register() {
                             {showPassword ? "Hide" : "Show"}
                         </button>
                     </div>
-
                     {error && <p className="text-red-400 text-[13px] mb-4">{error}</p>}
-
                     <button type="submit" className="w-full mt-3 h-[45px] bg-gradient-to-r from-[#75bdf4] to-[#4b91c9] text-white font-medium rounded-[2px] hover:brightness-110 transition">Sign in</button>
-
                     <p className="text-center text-[13px] text-[#8f98a0] mt-5">Already have an account?{" "}<Link to="/login" className="text-[#66c0f4] hover:text-white">Log in</Link></p>
                 </form>
             </div>

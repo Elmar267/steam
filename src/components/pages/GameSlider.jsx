@@ -57,7 +57,6 @@ function GameSlider() {
             if (prev === 0) {
                 return maxIndex;
             }
-
             return prev - 1;
         });
     };
@@ -67,7 +66,6 @@ function GameSlider() {
             if (prev >= maxIndex) {
                 return 0;
             }
-
             return prev + 1;
         });
     };
@@ -88,13 +86,11 @@ function GameSlider() {
                 <div className="overflow-hidden w-full">
                     <div className="flex gap-2 sm:gap-3 transition-transform duration-300 ease-in-out"
                         style={{transform: `translateX(calc(-${currentIndex} * ((100% - ${(itemsPerPage - 1) * 8}px) / ${itemsPerPage} + 8px))`,}} >
-
                         {filteredGames.length === 0 ? (
                                 Array.from({ length: 5 }).map((_, i) => (
                                     <MainCardSkeleton key={i} />
                                 ))
                             ) :
-                        
                         (filteredGames.map((game) => (
                             <Link id={game.id} to={`/game/${game.slug}`} key={game.id} className="flex-none cursor-pointer group/card"
                                 style={{width: `calc((100% - ${(itemsPerPage - 1) * 8}px) / ${itemsPerPage})`,}}>

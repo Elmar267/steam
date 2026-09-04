@@ -5,7 +5,7 @@ import { Link } from 'react-router';
 
 function WishList() {
     const { wish, removeFromWishlist } = useContext(WISH)
-    const { addBasket, basket } = useContext(BASKET)
+    const { addBasket, removeFromBasket, basket } = useContext(BASKET)
 
   return (
     <div className='bg2 min-h-[90vh] mt-10 pt-20 pb-30'>
@@ -54,13 +54,14 @@ function WishList() {
                                                             </div>
                                                         </div>
                                                     )}
-                                                    <button onClick={() => addBasket(item.id, item.title, item.oldPrice, item.newPrice, item.discount, item.platform, item.coverImage, item.slug)}
-                                                        disabled={isAdded}
+                                                    <button onClick={() => { isAdded ? removeFromBasket(item.id) :
+                                                                addBasket( item.id, item.title, item.oldPrice, item.newPrice, item.discount, item.platform, item.coverImage, item.slug )
+                                                        }}
                                                         className={`rounded-xs px-2 py-1.5 text-[14px] text-white font-medium ${
-                                                            isAdded
-                                                                ? "bg-gray-500 cursor-not-allowed"
-                                                                : "bg-[#75a916] hover:bg-[#8ed629] cursor-pointer"}`}>
-                                                        {isAdded ? "Already Added" : "Add to Basket"}
+                                                            isAdded ? "bg-[#6a7282] hover:bg-[#717171] cursor-pointer" :
+                                                            "bg-[#75a916] hover:bg-[#8ed629] cursor-pointer"
+                                                        }`} >
+                                                        {isAdded ? "Remove from Basket" : "Add to Basket"}
                                                     </button>
                                                 </div>
                                             </div>

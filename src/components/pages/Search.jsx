@@ -1,13 +1,23 @@
-import React, { useContext, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import { DATA } from '../context/DataContext'
 import { Link } from 'react-router'
 
 function Search() {
     const [search, setSearch] = useState('')
     const { product } = useContext(DATA)
-    const filterGame = search && search && product.length !== 0 ?
+    const [debouncedSearch, setDebouncedSearch] = useState('')
+
+    useEffect(() => {
+        const timer = setTimeout(() => {
+            setDebouncedSearch(search)
+        }, 750)
+
+        return () => clearTimeout(timer)
+    }, [search])
+
+    const filterGame = debouncedSearch && product.length !== 0 ?
         product.filter(item =>
-            search.toLowerCase()
+            debouncedSearch.toLowerCase()
                 .split(" ")
                 .every(word =>
                     item.title.toLowerCase()
