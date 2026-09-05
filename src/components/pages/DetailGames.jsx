@@ -1,8 +1,8 @@
 import React, { useContext, useState } from 'react'
 import { Link, useParams } from 'react-router'
 import { DATA } from '../context/DataContext'
-import { BASKET } from '../context/BasketContext';
-import { FaShoppingCart, FaStar } from "react-icons/fa";
+import { BASKET } from '../context/BasketContext'
+import { FaShoppingCart, FaStar } from "react-icons/fa"
 import { WISH } from '../context/WishContext';
 
 function DetailGames() {

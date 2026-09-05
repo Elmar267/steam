@@ -5,7 +5,7 @@ import { Link } from 'react-router'
 
 function AdvancedSearch() {
     const { product, category, features, genres} = useContext(DATA)
-    const { addBasket } = useContext(BASKET)
+    const { addBasket, basket, removeFromBasket } = useContext(BASKET)
     const [OpenPrice, setOpenPrice] = useState(false)
     const [OpenCategory, setOpenCategory] = useState(false)
     const [OpenFeatures, setOpenFeatures] = useState(false)
@@ -44,6 +44,7 @@ function AdvancedSearch() {
                     {filteredGames.length === 0 ? 
                         <p className='text-[17px] text-[#bbb] font-medium ml-5'>0 results match your search.</p> : 
                         filteredGames.slice(0, 8).map((item, i) => {
+                            const isAdded = basket.some(game => game.id === item.id)
                             return <div key={i} className="bg-[#16202d] hover:bg-[#101822] p-3 mb-4 cursor-pointer">
                                         <div className="flex flex-wrap justify-between items-center gap-3">
                                             <div className='w-[100%] sm:w-[20%]'>
@@ -69,7 +70,15 @@ function AdvancedSearch() {
                                                         </div>
                                                     </div>
                                                     )}
-                                                    <button onClick={() => addBasket(item.id, item.title, item.oldPrice, item.newPrice, item.discount, item.platform, item.coverImage)} className="bg-[#75a916] hover:bg-[#8ed629] rounded-xs cursor-pointer px-2 py-1.5 text-[14px] text-white font-medium">Add to Basket</button>
+                                                    <button onClick={() => { isAdded ? removeFromBasket(item.id) :
+                                                                addBasket( item.id, item.title, item.oldPrice, item.newPrice, item.discount, item.platform, item.coverImage, item.slug )
+                                                        }}
+                                                        className={`rounded-xs px-2 py-1.5 text-[14px] text-white font-medium ${
+                                                            isAdded ? "bg-[#6a7282] hover:bg-[#717171] cursor-pointer" :
+                                                            "bg-[#75a916] hover:bg-[#8ed629] cursor-pointer"
+                                                        }`} >
+                                                        {isAdded ? "Remove" : "Add to Basket"}
+                                                    </button>
                                                 </div>
                                             </div>
                                         </div>
@@ -126,14 +135,14 @@ function AdvancedSearch() {
                             <div className="w-full bg-[#1b2838] border border-[#2f4052] px-2 py-1">
                                     <label onClick={() => setFilterFeatures('')}>
                                         <div className='cursor-pointer flex items-center gap-3 hover:bg-[#323e4c] my-1 py-1'>
-                                            <input type="radio" name='category' className="w-[18px] accent-[#66c0f4]"/>
+                                            <input type="radio" name='features' className="w-[18px] accent-[#66c0f4]"/>
                                             <p className="text-[#66c0f4] text-[14px]">All</p>
                                         </div>
                                     </label>
                                 {features.map((item, i) => {
                                     return <label key={i} onClick={() => setFilterFeatures(item.name)}>
                                                 <div className='cursor-pointer flex items-center gap-3 hover:bg-[#323e4c] my-1 py-1'>
-                                                    <input type="radio" name='category' className="w-[18px] accent-[#66c0f4]"/>
+                                                    <input type="radio" name='features' className="w-[18px] accent-[#66c0f4]"/>
                                                     <p className="text-[#66c0f4] text-[14px]">{item.name}</p>
                                                 </div>
                                             </label>
@@ -149,14 +158,14 @@ function AdvancedSearch() {
                             <div className="w-full bg-[#1b2838] border border-[#2f4052] px-3 py-1">
                                     <label onClick={() => setFilterGenres('')}>
                                         <div className='cursor-pointer flex items-center gap-3 hover:bg-[#323e4c] my-1 py-1'>
-                                            <input type="radio" name='category' className="w-[18px] accent-[#66c0f4]"/>
+                                            <input type="radio" name='genres' className="w-[18px] accent-[#66c0f4]"/>
                                             <p className="text-[#66c0f4] text-[14px]">All</p>
                                         </div>
                                     </label>
                                 {genres.map((item, i) => {
                                     return <label key={i} onClick={() => setFilterGenres(item.name)}>
                                                 <div className='cursor-pointer flex items-center gap-3 hover:bg-[#323e4c] my-1 py-1'>
-                                                    <input type="radio" name='category' className="w-[18px] accent-[#66c0f4]"/>
+                                                    <input type="radio" name='genres' className="w-[18px] accent-[#66c0f4]"/>
                                                     <p className="text-[#66c0f4] text-[14px]">{item.name}</p>
                                                 </div>
                                             </label>
