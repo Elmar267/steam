@@ -76,8 +76,7 @@ function Login() {
                     <button onClick={handleGoogleLogin} className="w-full h-[45px] cursor-pointer bg-white text-[#333] rounded-[2px] font-medium hover:bg-gray-200 transition" >
                         Log in with Google
                     </button>
-                    <p className="text-center text-[13px] text-[#8f98a0] mt-5">
-                        Don't have an account?{" "}
+                    <p className="text-center text-[13px] text-[#8f98a0] mt-5"> Don't have an account?{" "}
                         <Link to="/register" className="text-[#66c0f4] hover:text-white">
                             Sign up
                         </Link>

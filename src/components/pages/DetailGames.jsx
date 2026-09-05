@@ -92,7 +92,6 @@ function DetailGames() {
                     }`} >
                     {isAddedWish ? "Remove from wish" : "Add to wish"}
                 </button>
-                <button className="bg-[#315a75] hover:bg-[#4f95bd] px-3 py-1.5 text-sm">View Your Queue →</button>
             </div>
             <div className="grid grid-cols-1 lg:grid-cols-[1fr_280px] gap-3 mt-10">
                 <div>

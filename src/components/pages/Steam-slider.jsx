@@ -54,13 +54,6 @@ function SteamSlider() {
             <div className="max-w-[1920px] mx-auto">
                 <div className="hidden md:flex items-center justify-between mb-3" style={insetStyle}>
                     <h2 className="text-white text-[20px] font-bold tracking-tight">Featured & Recommended</h2>
-                    <div className="flex items-center gap-2 bg-gradient-to-b from-[#3699d4] to-[#1b6ea8] rounded-[3px] pl-2 pr-3 py-[6px] cursor-pointer hover:brightness-110 transition">
-                        <div className="flex -space-x-2">
-                            <span className="w-[22px] h-[22px] rounded-full bg-[#0e1c26] border-2 border-[#8fd0f0] text-[8px] text-[#8fd0f0] flex items-center justify-center font-bold">20</span>
-                            <span className="w-[22px] h-[22px] rounded-full bg-[#0e1c26] border-2 border-[#8fd0f0] text-[8px] text-[#8fd0f0] flex items-center justify-center font-bold">50</span>
-                        </div>
-                        <span className="text-white text-[13px] font-semibold whitespace-nowrap">Send a Gift Card</span>
-                    </div>
                 </div>
                 <div className="md:hidden px-3 mb-2"><h2 className="text-white text-[17px] font-bold">Featured & Recommended</h2></div>
                 <div className="flex items-stretch">
