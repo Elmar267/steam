@@ -18,7 +18,7 @@ function Store() {
   
 
   return (
-    <main className='bg2 mt-7 pt-30 pb-30'>
+    <main className='bg2 mt-7 pt-30 pb-30 overflow-x-hidden'>
         <div className='bg-[#182434] fixed top-0 right-0 left-0 z-98'>
           <div className='max-w-[1250px] mx-auto px-2 sm:px-3 md:px-5 lg:px-5 pt-21 md:pt-23.5 pb-2 flex flex-wrap justify-center md:justify-between lg:justify-between'>
             <div className='w-[100%] md:w-[530px] lg:w-[580px] flex flex-wrap justify-end gap-2 sm:gap-5 md:gap-5 lg:gap-5'>

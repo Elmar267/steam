@@ -81,11 +81,11 @@ function ActionGames() {
         <div className="relative flex items-center">
             <button
                 onClick={prevSlide}
-                className="absolute -left-3 sm:-left-7 z-10 text-[#67707b] hover:text-white">
+                className="absolute left-0 sm:-left-7 z-10 text-[#67707b] hover:text-white">
                 <ChevronLeft className="w-7 h-7 sm:w-9 sm:h-9" />
             </button>
             <div className="overflow-hidden w-full">
-                <div className="flex gap-2 sm:gap-3 transition-transform duration-300 ease-in-out"
+                <div className="flex gap-2 transition-transform duration-300 ease-in-out"
                     style={{
                         transform: `translateX(calc(
                         -${currentIndex} *
@@ -131,7 +131,7 @@ function ActionGames() {
             </div>
             <button
                 onClick={nextSlide}
-                className="absolute -right-3 sm:-right-7 z-10 text-[#67707b] hover:text-white"
+                className="absolute right-0 sm:-right-7 z-10 text-[#67707b] hover:text-white"
             >
                 <ChevronRight className="w-7 h-7 sm:w-9 sm:h-9" />
             </button>

@@ -40,8 +40,8 @@ function DetailGames() {
                 <h1 className="text-[26px] text-[#e5e5e5]">{game.title}</h1>
                 <Link to={'/store'} className="bg-[#315b78] hover:bg-[#4f95bd] px-3 py-1.5 text-sm text-white cursor-pointer">Back to store</Link>
             </div>
-            <div className="grid grid-cols-1 lg:grid-cols-[1fr_320px] bg-[#101820]">
-                <div>
+            <div className="flex flex-wrap justify-center md:justify-between bg-[#171e25]">
+                <div className='w-[100%] md:w-[70%]'>
                     <div className="relative bg-black aspect-video">
                         <img src={mainImage} alt={game.title} className="w-full h-full object-cover" />
                     </div>
@@ -53,7 +53,7 @@ function DetailGames() {
                         ))}
                     </div>
                 </div>
-                <div className="bg-[#171e25] p-4">
+                <div className="bg-[#171e25] p-4 w-[100%] md:w-[29%]">
                     <img src={game.coverImage} alt={game.title} className="w-full h-[150px] object-cover mb-4" />
                     <p className="text-[#ccc] text-sm leading-5 mb-5">{game.aboutGame}</p>
                     <div className="space-y-2 mt-6 text-sm">
