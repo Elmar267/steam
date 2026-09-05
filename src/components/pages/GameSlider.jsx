@@ -73,14 +73,10 @@ function GameSlider() {
     return (
         <div className="text-white mt-8 p-4 sm:p-6 max-w-[1250px] mx-auto">
             <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-3 mb-4">
-                <h2 className="text-2xl font-bold text-[#e5e5e5]">
-                    RPG Games
-                </h2>
+                <h2 className="text-2xl font-bold text-[#e5e5e5]">RPG Games</h2>
             </div>
             <div className="relative flex items-center">
-                <button
-                    onClick={prevSlide}
-                    className="absolute -left-3 sm:-left-7 z-10 text-[#67707b] hover:text-white">
+                <button onClick={prevSlide} className="absolute -left-3 sm:-left-7 z-10 text-[#67707b] hover:text-white">
                     <ChevronLeft className="w-7 h-7 sm:w-9 sm:h-9" />
                 </button>
                 <div className="overflow-hidden w-full">
@@ -95,8 +91,7 @@ function GameSlider() {
                             <Link id={game.id} to={`/game/${game.slug}`} key={game.id} className="flex-none cursor-pointer group/card"
                                 style={{width: `calc((100% - ${(itemsPerPage - 1) * 8}px) / ${itemsPerPage})`,}}>
                                 <div className="relative aspect-[16/9] overflow-hidden">
-                                    <img src={game.coverImage} alt={game.title}
-                                        className="w-full h-full object-cover group-hover/card:scale-105 transition-transform duration-200" />
+                                    <img src={game.coverImage} alt={game.title} className="w-full h-full object-cover group-hover/card:scale-105 transition-transform duration-200" />
                                 </div>
                                 {game.discount === '0%' ?
                                     (<div className="bg-[#00000044] px-2 py-1.5 flex justify-end items-center gap-1">
